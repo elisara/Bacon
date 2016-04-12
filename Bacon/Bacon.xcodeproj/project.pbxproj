@@ -14,6 +14,8 @@
 		6A0E26A61CA3E4360090FBE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A0E26A41CA3E4360090FBE2 /* LaunchScreen.storyboard */; };
 		6A0E26B11CA3E4360090FBE2 /* BaconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E26B01CA3E4360090FBE2 /* BaconTests.swift */; };
 		6A0E26BC1CA3E4360090FBE2 /* BaconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E26BB1CA3E4360090FBE2 /* BaconUITests.swift */; };
+		6A2F91F31CBCDA8200D24C7E /* kaushan-script in Resources */ = {isa = PBXBuildFile; fileRef = 6A2F91F21CBCDA8200D24C7E /* kaushan-script */; };
+		6A2F91F71CBCFEF800D24C7E /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */; };
 		6A6D8FD81CB63C7000F68CD2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FD61CB63C7000F68CD2 /* Model.xcdatamodeld */; };
 		6A6D8FDA1CB6640E00F68CD2 /* eventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FD91CB6640E00F68CD2 /* eventTableViewCell.swift */; };
 		6A6D8FDC1CB6734A00F68CD2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FDB1CB6734A00F68CD2 /* Event.swift */; };
@@ -52,6 +54,8 @@
 		6A0E26B71CA3E4360090FBE2 /* BaconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0E26BB1CA3E4360090FBE2 /* BaconUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaconUITests.swift; sourceTree = "<group>"; };
 		6A0E26BD1CA3E4360090FBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A2F91F21CBCDA8200D24C7E /* kaushan-script */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "kaushan-script"; path = "../../../../../../Downloads/kaushan-script"; sourceTree = "<group>"; };
+		6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KaushanScript-Regular.otf"; path = "../../../../../../Downloads/kaushan-script/KaushanScript-Regular.otf"; sourceTree = "<group>"; };
 		6A6D8FD71CB63C7000F68CD2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		6A6D8FD91CB6640E00F68CD2 /* eventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventTableViewCell.swift; sourceTree = "<group>"; };
 		6A6D8FDB1CB6734A00F68CD2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -116,7 +120,9 @@
 				6A0E26A41CA3E4360090FBE2 /* LaunchScreen.storyboard */,
 				6A0E26A71CA3E4360090FBE2 /* Info.plist */,
 				6A6D8FDB1CB6734A00F68CD2 /* Event.swift */,
+				6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */,
 				6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */,
+				6A2F91F21CBCDA8200D24C7E /* kaushan-script */,
 				6A6D8FDF1CB67C1900F68CD2 /* EventTableViewController.swift */,
 			);
 			path = Bacon;
@@ -208,6 +214,7 @@
 				TargetAttributes = {
 					6A0E26971CA3E4360090FBE2 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = P8UD624RV4;
 					};
 					6A0E26AB1CA3E4360090FBE2 = {
 						CreatedOnToolsVersion = 7.2;
@@ -246,7 +253,9 @@
 			files = (
 				6A0E26A61CA3E4360090FBE2 /* LaunchScreen.storyboard in Resources */,
 				6A0E26A31CA3E4360090FBE2 /* Assets.xcassets in Resources */,
+				6A2F91F71CBCFEF800D24C7E /* KaushanScript-Regular.otf in Resources */,
 				6A0E26A11CA3E4360090FBE2 /* Main.storyboard in Resources */,
+				6A2F91F31CBCDA8200D24C7E /* kaushan-script in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,10 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Bacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Bacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -430,10 +442,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Bacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Bacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
