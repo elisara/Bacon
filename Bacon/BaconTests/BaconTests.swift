@@ -10,7 +10,7 @@ import XCTest
 @testable import Bacon
 
 class BaconTests: XCTestCase {
-    
+    /*
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,6 +31,14 @@ class BaconTests: XCTestCase {
         self.measureBlock {
             // Put the code you want to measure the time of here.
         }
+    }*/
+    
+    func testMealInitialization() {
+        // Success case.
+        let potentialItem = Event(name: "Newest meal", icon: nil, eventImage: nil)
+        XCTAssertNotNil(potentialItem)
+        
+        
     }
     
 }

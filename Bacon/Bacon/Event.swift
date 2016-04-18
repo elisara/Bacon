@@ -2,7 +2,7 @@
 //  Event.swift
 //  Bacon
 //
-//  Created by iosdev on 7.4.2016.
+//  Created by iosdev on 12.4.2016.
 //  Copyright © 2016 iosdev. All rights reserved.
 //
 
@@ -32,11 +32,7 @@ class Event: NSObject, NSCoding{
         
         super.init()
         
-        // Initialization should fail if there is no name or if the rating is negative.
         
-        if name.isEmpty{
-            return nil
-        }
     }
     
     // MARK: Types
@@ -65,9 +61,9 @@ class Event: NSObject, NSCoding{
         // Must call designated initializer.
         self.init(name: name, icon: icon, eventImage: eventImage)
     }
-
     
     
     
-
+    
+    
 }
