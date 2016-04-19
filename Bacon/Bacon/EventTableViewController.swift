@@ -82,6 +82,7 @@ class EventTableViewController: UITableViewController {
                 
                 eventDetailViewController.event = selectedEvent
             }
+            
         }
         
     }

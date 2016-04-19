@@ -15,11 +15,7 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var iconView: UIImageView!
-    
     @IBOutlet weak var eventNameLabel: UILabel!
-    
-    
-    
     @IBOutlet weak var descriptionView: UITextView!
     
     
@@ -31,8 +27,6 @@ class EventViewController: UIViewController {
         // Handle the text field’s user input through delegate callbacks.
         
         if let event = event{
-        
-            
             eventNameLabel.text = event.name
             iconView.image = event.icon
             eventImageView.image = event.eventImage

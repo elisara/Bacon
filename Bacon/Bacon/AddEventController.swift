@@ -14,23 +14,9 @@ import UIKit
 class AddEventController: UIViewController {
     
     
-    @IBOutlet weak var eventNameField: UITextField!
-    
-    
-    @IBOutlet weak var checkpointNumber: UILabel!
-    
-    @IBOutlet weak var checkpointNumberCounter: UIStepper!
-    
-
-    @IBOutlet weak var pickerView: UIPickerView!
-    
-    
-    @IBAction func timerSelector(sender: UISwitch) {
-    }
-    
-    @IBAction func mapSelector(sender: UISwitch) {
-    }
-    
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+            }
     
 }
