@@ -13,6 +13,7 @@ import UIKit
 
 class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
+    var allInfo = ""
     var map = true
     var timer = true
     var eventName = ""
@@ -29,23 +30,28 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var pickTypeAndCity: UIPickerView!
     @IBOutlet weak var checkpointStepper: UIStepper!
+    @IBOutlet weak var eventDescriptionField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pickTypeAndCity?.dataSource = self
         pickTypeAndCity?.delegate = self
         eventNameField?.delegate = self
+        eventDescriptionField?.delegate = self
         
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         eventNameField.resignFirstResponder()
+        eventDescriptionField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         eventName = eventNameField.text!
         print("Eventname: ", eventName)
+        eventDescription = eventDescriptionField.text!
+        print("Eventdescription", eventDescription)
         
         
     }
@@ -105,34 +111,10 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
     }
     
+    
+    @IBAction func saveEvent(sender: UIButton) {
+        allInfo = "<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n<event><city>\(city)</city><description>\(eventDescription)</description><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
+        print("Allinfo: ", allInfo)
+    }
   
-   
-
-}
-
-class AddEventController2: UIViewController, UITextFieldDelegate {
-   
-    var eventDescription = ""
-    var event = AddEventController()
-    
-    @IBOutlet weak var eventDescriptionField: UITextField!
-    
-       //Event
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        eventDescriptionField?.delegate = self
-        print("Edellisestä city: ", event.eventName)
-        
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        eventDescriptionField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        eventDescription = eventDescriptionField.text!
-        print("EventDescription: ", eventDescription)
-        
-    }
 }
