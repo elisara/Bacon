@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
     var allInfo = ""
     var map = true
@@ -30,7 +30,9 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var pickTypeAndCity: UIPickerView!
     @IBOutlet weak var checkpointStepper: UIStepper!
-    @IBOutlet weak var eventDescriptionField: UITextField!
+    //@IBOutlet weak var eventDescriptionField: UITextField!
+    @IBOutlet weak var eventDescriptionField: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +45,28 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         eventNameField.resignFirstResponder()
-        eventDescriptionField.resignFirstResponder()
+        //eventDescriptionField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         eventName = eventNameField.text!
         print("Eventname: ", eventName)
-        eventDescription = eventDescriptionField.text!
-        print("Eventdescription", eventDescription)
-        
         
     }
-    
 
+
+    func textViewDidEndEditing(textView: UITextView) {
+        eventDescription = eventDescriptionField.text!
+        print("Eventdescription: ", eventDescription)
+        
+    }
+    //Closes keyboard when clicking outside of the textview
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     
     @IBAction func stepperAction(sender: AnyObject) {
         numberLabel.text = "\(Int(checkpointStepper.value))"
@@ -113,7 +123,7 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     @IBAction func saveEvent(sender: UIButton) {
-        allInfo = "<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n<event><city>\(city)</city><description>\(eventDescription)</description><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
+        allInfo = "<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n<event><city>\(city)</city><description>\(eventDescription)</description><eventOn>false</eventOn><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
         print("Allinfo: ", allInfo)
     }
   
