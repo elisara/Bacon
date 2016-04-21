@@ -19,7 +19,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     
     
-    var event = Event?()
+    var event = Event2?()
     
     override func viewDidLoad() {
         super.viewDidLoad()

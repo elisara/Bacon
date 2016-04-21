@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+    <entity name="Checkpoint" representedClassName=".Checkpoint" syncable="YES">
+        <attribute name="beacon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checkpointDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hint2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organizer" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventIdToCheckpoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventIdToCheckpoint" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName=".Event" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventOn" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="map" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="numberOfCheckpoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timer" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventIdToCheckpoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Checkpoint" inverseName="eventIdToCheckpoint" inverseEntity="Checkpoint" syncable="YES"/>
+        <relationship name="eventNameToScore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Score" inverseName="eventNameToScore" inverseEntity="Score" syncable="YES"/>
+    </entity>
+    <entity name="Score" representedClassName=".Score" syncable="YES">
+        <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventNameToScore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventNameToScore" inverseEntity="Event" syncable="YES"/>
+        <relationship name="userNameToScore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userNameToScore" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="userNameToScore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Score" inverseName="userNameToScore" inverseEntity="Score" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Event" positionX="-549" positionY="35" width="128" height="223"/>
+        <element name="Checkpoint" positionX="-243" positionY="18" width="128" height="178"/>
+        <element name="User" positionX="-18" positionY="63" width="128" height="103"/>
+        <element name="Score" positionX="160" positionY="65" width="128" height="118"/>
+    </elements>
+</model>

@@ -11,7 +11,7 @@ import UIKit
 class EventTableViewController: UITableViewController {
     
     
-    var events = [Event]()
+    var events = [Event2]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +59,9 @@ class EventTableViewController: UITableViewController {
         let photo1 = UIImage(named: "heart")!
         let photo2 = UIImage(named: "blue2")!
         
-        let event1 = Event(name: "Jihuu", icon: photo1, eventImage: photo2)!
-        let event2 = Event(name: "Jahuu", icon: photo1, eventImage: photo2)!
-        let event3 = Event(name: "Juhuu", icon: photo1, eventImage: photo2)!
+        let event1 = Event2(name: "Jihuu", icon: photo1, eventImage: photo2)!
+        let event2 = Event2(name: "Jahuu", icon: photo1, eventImage: photo2)!
+        let event3 = Event2(name: "Juhuu", icon: photo1, eventImage: photo2)!
         events += [event1, event2, event3]
         print("load samples")
         print(String(events))
@@ -90,14 +90,14 @@ class EventTableViewController: UITableViewController {
     // MARK: NSCoding
     
     func saveEvents() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: Event.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: Event2.ArchiveURL.path!)
         if !isSuccessfulSave{
             print("Failed to save events...")
         }
     }
     
-    func loadEvents() -> [Event]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Event.ArchiveURL.path!) as? [Event]
+    func loadEvents() -> [Event2]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Event2.ArchiveURL.path!) as? [Event2]
     }
     
     

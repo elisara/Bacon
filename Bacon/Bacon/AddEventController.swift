@@ -13,6 +13,7 @@ import UIKit
 
 class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
+    //var asd = myHTTPPost()
     var allInfo = ""
     var map = true
     var timer = true
@@ -40,6 +41,7 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         pickTypeAndCity?.delegate = self
         eventNameField?.delegate = self
         eventDescriptionField?.delegate = self
+        
         
     }
     
@@ -123,12 +125,16 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     @IBAction func saveEvent(sender: UIButton) {
-        //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
-        allInfo = "<event><city>\(city)</city><description>\(eventDescription)</description><eventOn>false</eventOn><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
-        print("Allinfo: ", allInfo)
+        let asd = myHTTPPost()
         
+        //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
+        /*allInfo = "<event><city>\(city)</city><description>\(eventDescription)</description><eventOn>false</eventOn><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
+        print("Allinfo: ", allInfo)
+        */
         
         allInfo = "<event><city>\(city)</city><eventDescription>\(eventDescription)</eventDescription><eventID>1</eventID><eventName>\(eventName)</eventName><eventOn>false</eventOn><imageURL>www.google.com</imageURL><map>\(map)</map><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(timer)</timer><type>\(type)</type></event>"
+        
+        asd.postData(allInfo, urlExtension: "Event")
     }
   
 }

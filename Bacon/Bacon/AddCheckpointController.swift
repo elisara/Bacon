@@ -95,7 +95,11 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBAction func saveCheckpoint(sender: UIButton) {
         //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
         
+        let myPost = myHTTPPost()
+        
         allInfo = "<checkpoint><beacon>\(beacons[i])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+        
+        myPost.postData(allInfo, urlExtension: "Checkpoint")
        
         print(allInfo)
         
