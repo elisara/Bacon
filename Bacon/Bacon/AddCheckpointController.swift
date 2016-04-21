@@ -20,6 +20,9 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     var checkpointDescription = ""
     var hint1 = ""
     var hint2 = ""
+    var checkpoints = 10
+    var currentCheckpoint = 1
+    var i = 0
     
     
     var beacons = ["1319", "1234"]
@@ -32,16 +35,26 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var descriptionField: UITextView!
     @IBOutlet weak var hint1Field: UITextView!
     @IBOutlet weak var hint2Field: UITextView!
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        saveBtn.hidden = true
         nameField?.delegate = self
         organizerField?.delegate = self
         descriptionField?.delegate = self
         hint1Field?.delegate = self
         hint2Field?.delegate = self
+        
+        checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
+        beaconLabel.text = beacons[0]
+        
+        if currentCheckpoint == checkpoints{
+            nextBtn.hidden = true
+            saveBtn.hidden = false
+        }
         
     }
     
@@ -82,10 +95,26 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBAction func saveCheckpoint(sender: UIButton) {
         //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
         
-        allInfo = "<checkpoint><beacon>\(beacons[0])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+        allInfo = "<checkpoint><beacon>\(beacons[i])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
        
         print(allInfo)
         
+        currentCheckpoint+=1
+        checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
+        //i+=1
+        nameField.text = ""
+        descriptionField.text = ""
+        organizerField.text = ""
+        hint1Field.text = ""
+        hint2Field.text = ""
+        allInfo = ""
+        
+        if currentCheckpoint == checkpoints{
+            nextBtn.hidden = true
+            saveBtn.hidden = false
+        }
+        
+     
         
     }
 }
