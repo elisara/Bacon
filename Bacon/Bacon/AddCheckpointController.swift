@@ -81,7 +81,11 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     
     @IBAction func saveCheckpoint(sender: UIButton) {
         //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
-        allInfo = "<checkpoint><beacon>\(beacons[0])</beacon><description>\(checkpointDescription)</description><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+        
+        allInfo = "<checkpoint><beacon>\(beacons[0])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+       
         print(allInfo)
+        
+        
     }
 }
