@@ -123,7 +123,8 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     @IBAction func saveEvent(sender: UIButton) {
-        allInfo = "<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n<event><city>\(city)</city><description>\(eventDescription)</description><eventOn>false</eventOn><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
+        //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
+        allInfo = "<event><city>\(city)</city><description>\(eventDescription)</description><eventOn>false</eventOn><ID>1</ID><imageURL>www.google.com</imageURL><map>\(String(map))</map><name>\(eventName)</name><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(String(timer))</timer><type>\(type)</type></event>"
         print("Allinfo: ", allInfo)
     }
   
