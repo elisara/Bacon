@@ -32,11 +32,13 @@ class EventParser: NSObject,NSXMLParserDelegate {
     func parserDidStartDocument(parser: NSXMLParser) {
         print ("******************************************* did start document")
         appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        print ("******************************************* did start AppDelegate")
         managedContext = appDelegate!.managedObjectContext
+        print ("******************************************* did start managedContext")
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        //print("found element: \(elementName)")
+        print("found element: \(elementName)")
         
         //Create new event object when <event> -tag is found
         if (elementName == "event") {

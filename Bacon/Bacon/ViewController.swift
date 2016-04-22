@@ -20,12 +20,15 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
         proximityUUID: NSUUID(UUIDString: "DBB26A86-A7FD-45F7-AEEA-3A1BFAC8D6D9")!,
         identifier: "ranged region")
     
+    let myGetter = MyHTTPGet()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 3. Set the beacon manager's delegate
         self.beaconManager.delegate = self
         // 4. We need to request this authorization for every beacon manager
         self.beaconManager.requestAlwaysAuthorization()
+        print(myGetter.httpGet())
     }
     
     override func viewWillAppear(animated: Bool) {

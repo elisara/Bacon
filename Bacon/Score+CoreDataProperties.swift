@@ -2,7 +2,7 @@
 //  Score+CoreDataProperties.swift
 //  Bacon
 //
-//  Created by Jari Sandström on 21/04/16.
+//  Created by Jari Sandström on 22/04/16.
 //  Copyright © 2016 iosdev. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,7 +17,7 @@ extension Score {
     @NSManaged var eventName: String?
     @NSManaged var score: NSNumber?
     @NSManaged var userName: String?
-    @NSManaged var eventNameToScore: Event?
+    @NSManaged var eventNameToScore: NSManagedObject?
     @NSManaged var userNameToScore: User?
 
 }

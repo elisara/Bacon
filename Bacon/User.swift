@@ -2,7 +2,7 @@
 //  User.swift
 //  Bacon
 //
-//  Created by Jari Sandström on 21/04/16.
+//  Created by Jari Sandström on 22/04/16.
 //  Copyright © 2016 iosdev. All rights reserved.
 //
 
