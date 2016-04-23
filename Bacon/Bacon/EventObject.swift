@@ -22,6 +22,7 @@ class EventObject: NSObject, NSCoding{
     var timer: Bool
     var map: Bool
     var eventId: Int
+    var eventOn: Bool
     
     
     
@@ -29,7 +30,7 @@ class EventObject: NSObject, NSCoding{
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
     
     
-    init?(name: String, description : String, city: String, type: String, numberOfCheckpoints: Int, timer: Bool, map: Bool, eventId: Int){
+    init?(name: String, description : String, city: String, type: String, numberOfCheckpoints: Int, timer: Bool, map: Bool, eventId: Int, eventOn : Bool){
         
         // Initialize stored properties.
         self.name = name
@@ -40,6 +41,7 @@ class EventObject: NSObject, NSCoding{
         self.timer = timer
         self.map = map
         self.eventId = eventId
+        self.eventOn = eventOn
         
         super.init()
         
@@ -56,9 +58,11 @@ class EventObject: NSObject, NSCoding{
         static let timerKey = "timer"
         static let mapKey = "map"
         static let eventIdKey = "eventId"
+        static let eventOnKey = "eventOn"
     }
     
     // MARK: NSCoding
+    
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
@@ -69,6 +73,7 @@ class EventObject: NSObject, NSCoding{
         aCoder.encodeObject(timer, forKey: PropertyKey.timerKey)
         aCoder.encodeObject(map, forKey: PropertyKey.mapKey)
         aCoder.encodeObject(eventId, forKey: PropertyKey.eventIdKey)
+        aCoder.encodeObject(eventOn, forKey: PropertyKey.eventOnKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -80,10 +85,19 @@ class EventObject: NSObject, NSCoding{
         let timer = aDecoder.decodeObjectForKey(PropertyKey.timerKey) as! Bool
         let map = aDecoder.decodeObjectForKey(PropertyKey.mapKey) as! Bool
         let eventId = aDecoder.decodeObjectForKey(PropertyKey.eventIdKey) as! Int
+        let eventOn = aDecoder.decodeObjectForKey(PropertyKey.eventOnKey) as! Bool
         
         
         // Must call designated initializer.
-        self.init(name: name, description: eventDescription, city: city, type: type, numberOfCheckpoints: numberOfCheckpoints, timer: timer, map: map, eventId: eventId)
+        self.init(name: name, description: eventDescription, city: city, type: type, numberOfCheckpoints: numberOfCheckpoints, timer: timer, map: map, eventId: eventId, eventOn: eventOn)
+    }
+    
+    func getAll() -> (String, String, String, String, Int, Bool, Bool, Int, Bool){
+        return(name, eventDescription, city, type, numberOfCheckpoints, timer, map, eventId, eventOn)
+    }
+    
+    func getEventName() -> String{
+        return name
     }
     
 }

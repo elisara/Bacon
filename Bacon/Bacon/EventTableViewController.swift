@@ -10,9 +10,11 @@ import UIKit
 
 class EventTableViewController: UITableViewController {
     
+    //Pitää saada evnttilista eventparserilta, PYYDÄ APUA!
     
+    //tätä ei enää varvita sitten kun saadaan oikea lista
     var events = [EventObject]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +37,7 @@ class EventTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return events.count
+        return 3//events.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -43,11 +45,13 @@ class EventTableViewController: UITableViewController {
         let cellIdentifier = "EventTableViewCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
         
-        // Fetches the appropriate meal for the data source layout.
-        let event = events[indexPath.row]
-        print("Eventin nimi: " + event.name)
         
-        cell.eventLabel.text = event.name
+        //tähän oikea lista sitten kun sen saa:
+        //let event = events[indexPath.row]
+        //print("Eventin nimi: " + event.name)
+        
+        //nimeksi event.getName
+        cell.eventLabel.text = "eventti'"
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
         
@@ -55,8 +59,7 @@ class EventTableViewController: UITableViewController {
     }
     
     func loadSampleEvents()  {
-        
-        /**
+    /**
         let photo1 = UIImage(named: "heart")!
         let photo2 = UIImage(named: "blue2")!
         
@@ -89,6 +92,7 @@ class EventTableViewController: UITableViewController {
         
     }
     
+
     // MARK: NSCoding
     
     func saveEvents() {
@@ -101,7 +105,7 @@ class EventTableViewController: UITableViewController {
     func loadEvents() -> [EventObject]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(EventObject.ArchiveURL.path!) as? [EventObject]
     }
-    
+
     
 
 }

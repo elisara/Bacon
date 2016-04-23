@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 // 1. Add the ESTBeaconManagerDelegate protocol
 class ViewController: UIViewController, ESTBeaconManagerDelegate  {
@@ -97,4 +98,6 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
             print(places) // TODO: remove after implementing the UI
         }
     }
+
+    
 }

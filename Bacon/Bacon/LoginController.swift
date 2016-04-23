@@ -29,11 +29,8 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         //adminBtn.hidden = true
         usernameField?.delegate = self
         passwordField?.delegate = self
- 
         
     }
-    
- 
     
     func textFieldDidEndEditing(textField: UITextField) {
         username = usernameField.text!
@@ -51,7 +48,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
    
     
     }
