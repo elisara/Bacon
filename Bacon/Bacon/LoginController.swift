@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-
-class LoginController: UIViewController, UITextFieldDelegate {
+class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsControllerDelegate {
     
     var username = ""
     var password = ""

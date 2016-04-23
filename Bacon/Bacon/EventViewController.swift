@@ -19,7 +19,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     
     
-    var event = Event2?()
+    var event = EventObject?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,8 @@ class EventViewController: UIViewController {
         
         if let event = event{
             eventNameLabel.text = event.name
-            iconView.image = event.icon
-            eventImageView.image = event.eventImage
+            iconView.image = UIImage(named: "heart")!
+            eventImageView.image = UIImage(named: "blue2")!
             descriptionView.text = "TESTI DESSU"
 
         }

@@ -33,9 +33,9 @@
 		6A0E26B11CA3E4360090FBE2 /* BaconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E26B01CA3E4360090FBE2 /* BaconTests.swift */; };
 		6A0E26BC1CA3E4360090FBE2 /* BaconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E26BB1CA3E4360090FBE2 /* BaconUITests.swift */; };
 		6A102CC71CBD234C00623872 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CC61CBD234C00623872 /* EventTableViewController.swift */; };
-		6A102CCB1CBD269300623872 /* Event2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* Event2.swift */; };
-		6A102CCC1CBD269300623872 /* Event2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* Event2.swift */; };
-		6A102CCD1CBD269300623872 /* Event2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* Event2.swift */; };
+		6A102CCB1CBD269300623872 /* EventObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* EventObject.swift */; };
+		6A102CCC1CBD269300623872 /* EventObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* EventObject.swift */; };
+		6A102CCD1CBD269300623872 /* EventObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CCA1CBD269300623872 /* EventObject.swift */; };
 		6A102CCE1CBE189100623872 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CC61CBD234C00623872 /* EventTableViewController.swift */; };
 		6A102CCF1CBE1C4000623872 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */; };
 		6A102CD11CBE25A300623872 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CD01CBE25A300623872 /* EventViewController.swift */; };
@@ -113,7 +113,7 @@
 		6A0E26BB1CA3E4360090FBE2 /* BaconUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaconUITests.swift; sourceTree = "<group>"; };
 		6A0E26BD1CA3E4360090FBE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A102CC61CBD234C00623872 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
-		6A102CCA1CBD269300623872 /* Event2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event2.swift; sourceTree = "<group>"; };
+		6A102CCA1CBD269300623872 /* EventObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventObject.swift; sourceTree = "<group>"; };
 		6A102CD01CBE25A300623872 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		6A102CD41CBE436800623872 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KaushanScript-Regular.otf"; path = "/Users/iosdev/Desktop/2.vuosi 4.jakso/Bacon/Bacon/Bacon/KaushanScript-Regular.otf/KaushanScript-Regular.otf"; sourceTree = "<absolute>"; };
@@ -192,7 +192,7 @@
 				6A0E26A41CA3E4360090FBE2 /* LaunchScreen.storyboard */,
 				6A0E26A71CA3E4360090FBE2 /* Info.plist */,
 				6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */,
-				6A102CCA1CBD269300623872 /* Event2.swift */,
+				6A102CCA1CBD269300623872 /* EventObject.swift */,
 				6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */,
 				6A102CC61CBD234C00623872 /* EventTableViewController.swift */,
 				6A102CD01CBE25A300623872 /* EventViewController.swift */,
@@ -385,7 +385,7 @@
 				4928E9411CCA2502003B0D36 /* Event+CoreDataProperties.swift in Sources */,
 				6A102CC71CBD234C00623872 /* EventTableViewController.swift in Sources */,
 				4928E9421CCA2502003B0D36 /* Event.swift in Sources */,
-				6A102CCB1CBD269300623872 /* Event2.swift in Sources */,
+				6A102CCB1CBD269300623872 /* EventObject.swift in Sources */,
 				6A874DD81CC9FC290038EE30 /* MapViewController.swift in Sources */,
 				6A874D8A1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
 				6A874D861CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
@@ -406,7 +406,7 @@
 				6A874D871CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
 				6A102CD21CBE25A300623872 /* EventViewController.swift in Sources */,
 				6A102CCF1CBE1C4000623872 /* EventTableViewCell.swift in Sources */,
-				6A102CCC1CBD269300623872 /* Event2.swift in Sources */,
+				6A102CCC1CBD269300623872 /* EventObject.swift in Sources */,
 				4928E9301CC9134C003B0D36 /* myHTTPPost.swift in Sources */,
 				6A874DD91CC9FC290038EE30 /* MapViewController.swift in Sources */,
 				6A874D8B1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
@@ -420,7 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A102CCD1CBD269300623872 /* Event2.swift in Sources */,
+				6A102CCD1CBD269300623872 /* EventObject.swift in Sources */,
 				6A874D881CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
 				6A0E26BC1CA3E4360090FBE2 /* BaconUITests.swift in Sources */,
 				6A874D8C1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,

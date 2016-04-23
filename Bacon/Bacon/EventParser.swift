@@ -41,7 +41,7 @@ class EventParser: NSObject,NSXMLParserDelegate {
         print("found element: \(elementName)")
         
         //Create new event object when <event> -tag is found
-        if (elementName == "event") {
+        if (elementName == "events") {
             print ("did start element event \(currentString)")
             thisEvent = NSEntityDescription.insertNewObjectForEntityForName("Event", inManagedObjectContext: managedContext!) as? Event
         }
@@ -50,26 +50,41 @@ class EventParser: NSObject,NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         //print("elementName= \(elementName)")
         
-        if (elementName == "event") {
+        if (elementName == "events") {
             print("did end element event \(currentString)")
         } else if(elementName == "eventName") {
             thisEvent?.eventName = currentString
-        } else if (elementName == "city") {
-            thisEvent?.city = currentString
+            print(currentString)
         } else if (elementName == "eventDescription") {
             thisEvent?.eventDescription = currentString
+            print(thisEvent?.eventDescription)
+        } else if (elementName == "city") {
+            thisEvent?.city = currentString
+            print(currentString)
         } else if (elementName == "eventID") {
             thisEvent?.eventID = NSNumber(integer: Int(currentString)!)
         } else if (elementName == "eventOn") {
-            thisEvent?.eventOn = NSNumber(integer: Int(currentString)!)
+            if currentString == "true"{
+                thisEvent?.eventOn = 1
+            } else{
+                thisEvent?.eventOn = 0
+            }
         } else if (elementName == "imageURL") {
             thisEvent?.imageURL = currentString
         } else if (elementName == "map") {
-            thisEvent?.map = NSNumber(integer: Int(currentString)!)
+            if currentString == "true"{
+                thisEvent?.map = 1
+            } else{
+                thisEvent?.map = 0
+            }
         } else if (elementName == "numberOfCheckpoints") {
             thisEvent?.numberOfCheckpoints = NSNumber(integer: Int(currentString)!)
         } else if (elementName == "timer") {
-            thisEvent?.timer = NSNumber(integer: Int(currentString)!)
+            if currentString == "true"{
+                thisEvent?.timer = 1
+            } else{
+                thisEvent?.timer = 0
+            }
         } else if (elementName == "type") {
             thisEvent?.type = currentString
         }

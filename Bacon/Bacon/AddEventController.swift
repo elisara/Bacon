@@ -134,6 +134,8 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         allInfo = "<event><city>\(city)</city><eventDescription>\(eventDescription)</eventDescription><eventID>1</eventID><eventName>\(eventName)</eventName><eventOn>false</eventOn><imageURL>www.google.com</imageURL><map>\(map)</map><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(timer)</timer><type>\(type)</type></event>"
         
+        print(allInfo)
+        
         asd.postData(allInfo, urlExtension: "Event")
     }
   
