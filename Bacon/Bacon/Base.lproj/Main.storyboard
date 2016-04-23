@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="2697" y="339"/>
         </scene>
-        <!--View Controller-->
+        <!--Register Controller-->
         <scene sceneID="YfW-F0-FgO">
             <objects>
-                <viewController id="WNA-F7-xw4" sceneMemberID="viewController">
+                <viewController id="WNA-F7-xw4" customClass="RegisterController" customModule="Bacon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kF2-Rn-GzG"/>
                         <viewControllerLayoutGuide type="bottom" id="13J-eH-2ev"/>
@@ -178,6 +178,7 @@
                                 <rect key="frame" x="272" y="307" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
+                                    <action selector="registerAction:" destination="WNA-F7-xw4" eventType="touchUpInside" id="QAR-1N-gqt"/>
                                     <segue destination="pdv-UB-r5a" kind="show" id="aNE-qG-M4r"/>
                                 </connections>
                             </button>
@@ -208,6 +209,13 @@
                             <constraint firstItem="3XW-w9-YeM" firstAttribute="centerX" secondItem="uMu-It-hcA" secondAttribute="centerX" id="y7g-3f-YzE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="0BM-b0-Vyh" id="vKE-JE-dXx"/>
+                        <outlet property="password2Field" destination="HWa-J6-34v" id="4g5-Qk-bDb"/>
+                        <outlet property="passwordField" destination="kzk-Wp-keC" id="xV4-a8-f0R"/>
+                        <outlet property="registerBtn" destination="ERF-ds-n6x" id="Bdj-co-uLO"/>
+                        <outlet property="usernameField" destination="3gX-rV-RqD" id="e25-o2-TCx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4s-8I-XyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1105,8 +1113,8 @@
         <image name="blue2" width="250" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="aNE-qG-M4r"/>
         <segue reference="VaZ-ZQ-97v"/>
         <segue reference="BDY-iv-La2"/>
-        <segue reference="EP0-Jn-Mtl"/>
     </inferredMetricsTieBreakers>
 </document>

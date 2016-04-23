@@ -60,6 +60,8 @@
 		6A874DD61CC8D7A00038EE30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DD31CC8D7A00038EE30 /* LoginController.swift */; };
 		6A874DD81CC9FC290038EE30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DD71CC9FC290038EE30 /* MapViewController.swift */; };
 		6A874DD91CC9FC290038EE30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DD71CC9FC290038EE30 /* MapViewController.swift */; };
+		6A874DDE1CCA28300038EE30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DDD1CCA28300038EE30 /* RegisterController.swift */; };
+		6A874DDF1CCA28300038EE30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DDD1CCA28300038EE30 /* RegisterController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,13 +116,14 @@
 		6A102CCA1CBD269300623872 /* Event2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event2.swift; sourceTree = "<group>"; };
 		6A102CD01CBE25A300623872 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		6A102CD41CBE436800623872 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
-		6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KaushanScript-Regular.otf"; path = "/Users/jari/Downloads/kaushan-script/KaushanScript-Regular.otf"; sourceTree = "<absolute>"; };
+		6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KaushanScript-Regular.otf"; path = "/Users/iosdev/Desktop/2.vuosi 4.jakso/Bacon/Bacon/Bacon/KaushanScript-Regular.otf/KaushanScript-Regular.otf"; sourceTree = "<absolute>"; };
 		6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointTableViewCell.swift; sourceTree = "<group>"; };
 		6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointTableViewController.swift; sourceTree = "<group>"; };
 		6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckpointController.swift; sourceTree = "<group>"; };
 		6A874DD31CC8D7A00038EE30 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6A874DD71CC9FC290038EE30 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6A874DDD1CCA28300038EE30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,7 @@
 				49227BBE1CC90CA8008DFE41 /* ObjCBridge.h */,
 				6A874DD71CC9FC290038EE30 /* MapViewController.swift */,
 				4928E9321CCA0A5A003B0D36 /* MyHTTPGet.swift */,
+				6A874DDD1CCA28300038EE30 /* RegisterController.swift */,
 			);
 			path = Bacon;
 			sourceTree = "<group>";
@@ -385,6 +389,7 @@
 				6A874DD81CC9FC290038EE30 /* MapViewController.swift in Sources */,
 				6A874D8A1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
 				6A874D861CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
+				6A874DDE1CCA28300038EE30 /* RegisterController.swift in Sources */,
 				49227BBA1CC90C1D008DFE41 /* ScoreParser.swift in Sources */,
 				4928E9401CCA2502003B0D36 /* Score.swift in Sources */,
 				6A874DD01CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */,
@@ -396,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A102CD61CBE436800623872 /* AddEventController.swift in Sources */,
+				6A874DDF1CCA28300038EE30 /* RegisterController.swift in Sources */,
 				6A874DD11CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */,
 				6A874D871CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
 				6A102CD21CBE25A300623872 /* EventViewController.swift in Sources */,
