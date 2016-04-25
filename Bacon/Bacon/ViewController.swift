@@ -30,6 +30,8 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
         // 4. We need to request this authorization for every beacon manager
         self.beaconManager.requestAlwaysAuthorization()
         print(myGetter.httpGet())
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {

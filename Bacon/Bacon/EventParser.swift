@@ -18,7 +18,9 @@ class EventParser: NSObject, NSXMLParserDelegate {
     var managedContext:NSManagedObjectContext?
     var thisEvent:Event?
     
-    var eventList = [EventObject]()
+    //var eventList = [EventObject]()
+    
+    
     
     func parse (xmlData:NSData) {
         let myParser = NSXMLParser(data: xmlData)
@@ -46,26 +48,26 @@ class EventParser: NSObject, NSXMLParserDelegate {
         if (elementName == "events") {
             print ("did start element event \(currentString)")
             thisEvent = NSEntityDescription.insertNewObjectForEntityForName("Event", inManagedObjectContext: managedContext!) as? Event
-        }
+                }
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         //print("elementName= \(elementName)")
         
-        if (elementName == "event") {
+        if (elementName == "events") {
             print("did end element event \(currentString)")
             
-            let object = EventObject(name: thisEvent!.eventName!, description: thisEvent!.eventDescription!, city: thisEvent!.city!, type: thisEvent!.type!, numberOfCheckpoints: Int(thisEvent!.numberOfCheckpoints!), timer: Bool(thisEvent!.timer!), map: Bool(thisEvent!.map!),eventId: Int(thisEvent!.eventID!),eventOn: Bool(thisEvent!.eventOn!))
+           /** let object = EventObject(name: thisEvent!.eventName!, description: thisEvent!.eventDescription!, city: thisEvent!.city!, type: thisEvent!.type!, numberOfCheckpoints: Int(thisEvent!.numberOfCheckpoints!), timer: Bool(thisEvent!.timer!), map: Bool(thisEvent!.map!),eventId: Int(thisEvent!.eventID!),eventOn: Bool(thisEvent!.eventOn!))
             
             print("Object created in eventparser: ", String(object))
             
             eventList.append(object!)
             print("Getall test: ", object?.getAll())
-            
+            */
             
         } else if(elementName == "eventName") {
             thisEvent?.eventName = currentString
-            print(currentString)
+            print("EVENTTINIMI: ",String(currentString))
         } else if (elementName == "eventDescription") {
             thisEvent?.eventDescription = currentString
             print(thisEvent?.eventDescription)
@@ -98,16 +100,19 @@ class EventParser: NSObject, NSXMLParserDelegate {
             }
         } else if (elementName == "type") {
             thisEvent?.type = currentString
+            
         }
-    
+            print("This event: ", String(thisEvent))
     }
+    
+    
     
     func parserDidEndDocument(parser: NSXMLParser) {
         print ("******************************************* did end document")
         //save the parsed objects to persistent storage
         do {
             try managedContext!.save()
-            print(String(eventList))
+           // print(String(eventList))
             
         } catch let error as NSError {
             print("Saving failed with error \(error), \(error.userInfo)")

@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
-class EventTableViewController: UITableViewController {
+class EventTableViewController: UITableViewController, NSFetchedResultsControllerDelegate{
     
     //Pitää saada evnttilista eventparserilta, PYYDÄ APUA!
     
     //tätä ei enää varvita sitten kun saadaan oikea lista
+    
     var events = [EventObject]()
+    
+    var myparser = MyHTTPGet()
+    
+    var fetchedResultsController: NSFetchedResultsController!
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator!
+    var managedObjectContext: NSManagedObjectContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +29,29 @@ class EventTableViewController: UITableViewController {
         print("view did load eventtableviewctrl")
         //loadSampleEvents()
         
+        
             }
+    
+    override func viewWillAppear(animated: Bool) {
+        //get students from the network
+        myparser.httpGet()
+        
+        //set up fetched results controller for the tableview
+        let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+        let fetchRequest    =  NSFetchRequest(entityName: "Event")
+        let sortDescriptor = NSSortDescriptor(key: "eventName", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
+        fetchedResultsController!.delegate = self
+        
+        do {
+            try fetchedResultsController?.performFetch()
+        } catch let error as NSError {
+            print ("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +67,8 @@ class EventTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3//events.count
+        return fetchedResultsController!.sections![ section ].numberOfObjects
+
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -51,7 +82,8 @@ class EventTableViewController: UITableViewController {
         //print("Eventin nimi: " + event.name)
         
         //nimeksi event.getName
-        cell.eventLabel.text = "eventti'"
+        let event = fetchedResultsController!.objectAtIndexPath(indexPath)
+        cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
         
@@ -72,6 +104,37 @@ class EventTableViewController: UITableViewController {
  */
         
     }
+    func saveContext () {
+        if managedObjectContext!.hasChanges {
+            do {
+                try managedObjectContext!.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                abort()
+            }
+        }
+    }
+    
+    func deleteEvents() {
+        let fetchRequest = NSFetchRequest(entityName: "Event")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try persistentStoreCoordinator!.executeRequest(deleteRequest, withContext: managedObjectContext!)
+        } catch let error as NSError {
+            debugPrint(error)
+        }
+        saveContext()
+    }
+    
+    
+    @IBAction func deleteEventAction(sender: UIButton) {
+        deleteEvents()
+    }
+
     
     // MARK: Navigation
     
@@ -105,6 +168,8 @@ class EventTableViewController: UITableViewController {
     func loadEvents() -> [EventObject]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(EventObject.ArchiveURL.path!) as? [EventObject]
     }
+    
+    
 
     
 
