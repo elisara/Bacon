@@ -3,7 +3,7 @@
 //  Bacon
 //
 //  Created by iosdev on 24.3.2016.
-//  Copyright © 2016 iosdev. All rights reserved.
+//  Copyright :copyright: 2016 iosdev. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
     // 2. Add the beacon manager and the beacon region
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(
-        proximityUUID: NSUUID(UUIDString: "DBB26A86-A7FD-45F7-AEEA-3A1BFAC8D6D9")!,
+        proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
         identifier: "ranged region")
     
     let myGetter = MyHTTPGet()
@@ -29,7 +29,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
         self.beaconManager.delegate = self
         // 4. We need to request this authorization for every beacon manager
         self.beaconManager.requestAlwaysAuthorization()
-        print(myGetter.httpGet())
+        //print(myGetter.httpGet())
         
         
     }
@@ -45,22 +45,18 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
     }
     
     let placesByBeacons = [
-        "6574:54631": [
-            "Heavenly Sandwiches": 50, // read as: it's 50 meters from
+        "57832:7199": [
+            "Blueberry beacon": 250,
+        ],
+        "911:912": [
+            "Mint Beacon": 350,
+        ],
+        "1319:50423": [
+            "Huutista!": 50, // read as: it's 50 meters from
             // "Heavenly Sandwiches" to the beacon with
             // major 6574 and minor 54631
             "Green & Green Salads": 150,
             "Mini Panini": 325
-        ],
-        "648:12": [
-            "Heavenly Sandwiches": 250,
-            "Green & Green Salads": 100,
-            "Mini Panini": 20
-        ],
-        "17581:4351": [
-            "Heavenly Sandwiches": 350,
-            "Green & Green Salads": 500,
-            "Mini Panini": 170
         ]
     ]
     
@@ -78,17 +74,7 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
         if let nearestBeacon = beacons.first {
             let places = placesNearBeacon(nearestBeacon)
             // TODO: update the UI here
-            //descriptionField.text = String("top lel")
-            nameLabel?.text = String(nearestBeacon.rssi)
-            holderLabel?.text = String(nearestBeacon.accuracy)
-            descriptionField?.text = String(places)
-            /*infoLabel.text = String(nearestBeacon)
-             accuracyLabel.text = String(nearestBeacon.accuracy)
-             proximityLabel.text = String(nearestBeacon.proximity)
-             rssiLabel.text = String(nearestBeacon.rssi)
-             nameLabel.text = String(nearestBeacon.proximityUUID)
-             print(places) // TODO: remove after implementing the UI
-             */
+            print(places.first)
         }
     }
     
@@ -100,6 +86,6 @@ class ViewController: UIViewController, ESTBeaconManagerDelegate  {
             print(places) // TODO: remove after implementing the UI
         }
     }
-
+    
     
 }

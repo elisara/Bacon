@@ -30,7 +30,7 @@ class EventObject: NSObject, NSCoding{
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
     
     
-    init?(name: String, description : String, city: String, type: String, numberOfCheckpoints: Int, timer: Bool, map: Bool, eventId: Int, eventOn : Bool){
+    init!(name: String!, description : String!, city: String, type: String, numberOfCheckpoints: Int, timer: Bool, map: Bool, eventId: Int, eventOn : Bool){
         
         // Initialize stored properties.
         self.name = name

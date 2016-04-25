@@ -11,12 +11,7 @@ import CoreData
 
 class EventTableViewController: UITableViewController, NSFetchedResultsControllerDelegate{
     
-    //Pitää saada evnttilista eventparserilta, PYYDÄ APUA!
-    
-    //tätä ei enää varvita sitten kun saadaan oikea lista
-    
     var events = [EventObject]()
-    
     var myparser = MyHTTPGet()
     
     var fetchedResultsController: NSFetchedResultsController!
@@ -75,14 +70,12 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "EventTableViewCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
-        
-        
-        //tähän oikea lista sitten kun sen saa:
-        //let event = events[indexPath.row]
-        //print("Eventin nimi: " + event.name)
-        
-        //nimeksi event.getName
+
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
+        
+        let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
+        
+        events.append(object!)
         cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
@@ -109,8 +102,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             do {
                 try managedObjectContext!.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+               
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
@@ -142,13 +134,12 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "selectEvent" {
-            let eventDetailViewController = segue.destinationViewController as! EventViewController
+            let destController = segue.destinationViewController as! EventViewController
             // Get the cell that generated this segue.
             if let selectedEventCell = sender as? EventTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedEventCell)!
                 let selectedEvent = events[indexPath.row]
-                
-                eventDetailViewController.event = selectedEvent
+                destController.event = selectedEvent
             }
             
         }
@@ -168,9 +159,5 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     func loadEvents() -> [EventObject]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(EventObject.ArchiveURL.path!) as? [EventObject]
     }
-    
-    
-
-    
 
 }

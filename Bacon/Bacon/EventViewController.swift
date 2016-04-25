@@ -27,10 +27,13 @@ class EventViewController: UIViewController {
         // Handle the text field’s user input through delegate callbacks.
         
         if let event = event{
-            eventNameLabel.text = event.name
+            eventNameLabel.text! = event.name
             iconView.image = UIImage(named: "heart")!
             eventImageView.image = UIImage(named: "blue2")!
-            descriptionView.text = "TESTI DESSU"
+            descriptionView.text! = event.eventDescription
+            
+            print(event.name)
+            print(event.eventDescription)
 
         }
         else{
