@@ -25,7 +25,10 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     var currentCheckpoint = 1
     var i = 0
     var gpsLocation = ""
-    var eventId = 0
+    var eventId = 1
+    
+    
+    var event = EventObject?()
     
     
     var beacons = ["1319:50423", "1234:1234"]
@@ -45,7 +48,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var GPSLocationField: UITextField!
-    
+    @IBOutlet weak var eventIdLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +64,25 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
         beaconLabel.text = beacons[0]
         
+        
+        
         if currentCheckpoint == checkpoints{
             nextBtn.hidden = true
             saveBtn.hidden = false
         }
+        if let event = event{
+            eventIdLabel.text = String(event.eventId)
+            self.eventId = event.eventId
+            
+            print("Eventid addcheckpointctrl", eventId)
+            
+        }
+        else{
+            print("Ei onnitunut")
+        }
         
+
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -134,7 +151,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         
         let myPost = myHTTPPost()
         
-        allInfo = "<checkpoint><beacon>\(beacons[i])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>1</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+        allInfo = "<checkpoint><beacon>\(beacons[i])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>\(eventId)</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
         
         myPost.postData(allInfo, urlExtension: "Checkpoint")
        

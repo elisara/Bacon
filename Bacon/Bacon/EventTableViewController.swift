@@ -137,6 +137,16 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             }
             
         }
+        if segue.identifier == "addEvent" {
+            let destController = segue.destinationViewController as! AddCheckpointController
+            // Get the cell that generated this segue.
+            if let selectedEventCell = sender as? EventTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedEventCell)!
+                let selectedEvent = events[indexPath.row]
+                destController.event = selectedEvent
+            }
+            
+        }
         
     }
     
