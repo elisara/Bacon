@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var checkpointButton: UIButton!
     
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -20,16 +21,83 @@ class MapViewController: UIViewController {
                                                                   regionRadius * 1.0, regionRadius * 1.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    // DBB26A86-A7FD-45F7-AEEA-3A1BFAC8D6D9
+    let beaconManager = ESTBeaconManager()
+    let beaconRegion = CLBeaconRegion(
+        proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
+        identifier: "ranged region")
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // set initial location to Metropolia
         let initialLocation = CLLocation(latitude: 60.221803, longitude: 24.804408)
         centerMapOnLocation(initialLocation)
+        // 3. Set the beacon manager's delegate
+        self.beaconManager.delegate = self
+        // 4. We need to request this authorization for every beacon manager
+        self.beaconManager.requestAlwaysAuthorization()
+        checkpointButton.enabled = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.beaconManager.startRangingBeaconsInRegion(self.beaconRegion)
+    }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.beaconManager.stopRangingBeaconsInRegion(self.beaconRegion)
+    }
     
+    let placesByBeacons = [
+        "57832:7199": [
+            "Blueberry beacon": 250,
+        ],
+        "911:912": [
+            "Mint Beacon": 350,
+        ],
+        "1319:50423": [
+            "Huutista!": 50, // read as: it's 50 meters from
+            // "Heavenly Sandwiches" to the beacon with
+            // major 6574 and minor 54631
+            "Green & Green Salads": 150,
+            "Mini Panini": 325
+        ]
+    ]
+    
+    func placesNearBeacon(beacon: CLBeacon) -> [String] {
+        let beaconKey = "\(beacon.major):\(beacon.minor)"
+        if let places = self.placesByBeacons[beaconKey] {
+            let sortedPlaces = Array(places).sort() { $0.1 < $1.1 }.map { $0.0 }
+            return sortedPlaces
+        }
+        return []
+    }
+    
+    func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon],
+                       inRegion region: CLBeaconRegion) {
+        if let nearestBeacon = beacons.first {
+            let places = placesNearBeacon(nearestBeacon)
+            // TODO: update the UI here
+            print("Ennen if: ", places.first)
+            if (places.first != nil){
+                print("ifissä: ", places.first)
+                checkpointButton.hidden = true
+            }
+            else {
+                checkpointButton.hidden = false
+            }
+        }
+    }
+    
+    func manageBeacons(manager: AnyObject, didRangeBeacons beacons: [CLBeacon],
+                       inRegion region: CLBeaconRegion) {
+        if let nearestBeacon = beacons.first {
+            let places = placesNearBeacon(nearestBeacon)
+            // TODO: update the UI here
+            print(places) // TODO: remove after implementing the UI
+        }
+    }
     
 }

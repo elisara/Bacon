@@ -8,9 +8,10 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
-class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextViewDelegate, NSFetchedResultsControllerDelegate {
     
     var allInfo = ""
     var checkpointNumber = 1
@@ -23,9 +24,15 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     var checkpoints = 10
     var currentCheckpoint = 1
     var i = 0
+    var gpsLocation = ""
+    var eventId = 0
     
     
-    var beacons = ["1319", "1234"]
+    var beacons = ["1319:50423", "1234:1234"]
+    
+    var fetchedResultsController: NSFetchedResultsController!
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator!
+    var managedObjectContext: NSManagedObjectContext?
     
     
     @IBOutlet weak var checkpointNumberLabel: UILabel!
@@ -37,19 +44,19 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var hint2Field: UITextView!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
-    
+    @IBOutlet weak var GPSLocationField: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         saveBtn.hidden = true
         nameField?.delegate = self
         organizerField?.delegate = self
         descriptionField?.delegate = self
         hint1Field?.delegate = self
         hint2Field?.delegate = self
+        GPSLocationField?.delegate = self
         
         checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
         beaconLabel.text = beacons[0]
@@ -61,10 +68,35 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        //get students from the network
+        //set up fetched results controller for the tableview
+        let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+        let fetchRequest    =  NSFetchRequest(entityName: "Event")
+        let sortDescriptor = NSSortDescriptor(key: "eventID", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
+        fetchedResultsController!.delegate = self
+        do {
+            try fetchedResultsController?.performFetch()
+            
+            
+        } catch let error as NSError {
+            print ("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        print("Managed.. : ")
+
+    }
+    
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         nameField.resignFirstResponder()
         organizerField.resignFirstResponder()
+            GPSLocationField.resignFirstResponder()
         //eventDescriptionField.resignFirstResponder()
         return true
     }
@@ -74,6 +106,8 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         print("Checkpointame: ", checkpointName)
         organizer = organizerField.text!
         print("Organizer: ", organizer)
+        gpsLocation = GPSLocationField.text!
+        print("GPS: ", gpsLocation)
         
     }
     

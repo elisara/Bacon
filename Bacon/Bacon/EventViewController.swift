@@ -21,7 +21,7 @@ class EventViewController: UIViewController {
     
     var event = EventObject?()
     
-    override func viewDidLoad() {
+       override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.

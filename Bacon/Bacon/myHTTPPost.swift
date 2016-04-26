@@ -1,19 +1,13 @@
-//
-//  myHTTPPost.swift
-//  Bacon
-//
-//  Created by Jari Sandström on 21/04/16.
-//  Copyright © 2016 iosdev. All rights reserved.
-//
-
 import Foundation
+import CoreData
 
 
 class myHTTPPost {
     
     var addEvent = AddEventController()
-    
+    var eventparser = EventParser()
     var urlString = "http://localhost:8080/iBaconBackend/webresources/"
+
     
     func postData(data: String, urlExtension: String) {
         
@@ -33,8 +27,16 @@ class myHTTPPost {
         
         let sessionTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             print("posting done, response = \(response), error = \(error)")
-        })
+            
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                        
+            self.eventparser.deleteEvents()
+            self.eventparser.parse(data!)
+            print(self.eventparser.currentString)
+            
+            })
         sessionTask.resume()
+        
     }
-
+    
 }

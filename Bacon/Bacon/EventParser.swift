@@ -66,9 +66,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
             thisEvent?.eventDescription = currentString
         } else if (elementName == "city") {
             thisEvent?.city = currentString
-        } else if (elementName == "eventID") {
-            thisEvent?.eventID = NSNumber(integer: Int(currentString)!)
-        } else if (elementName == "eventOn") {
+        }  else if (elementName == "eventOn") {
             if currentString == "true"{
                 thisEvent?.eventOn = 1
             } else{
@@ -93,6 +91,9 @@ class EventParser: NSObject, NSXMLParserDelegate {
         } else if (elementName == "type") {
             thisEvent?.type = currentString
             
+        }else if (elementName == "eventID") {
+            thisEvent?.eventID = NSNumber(integer: Int(currentString)!)
+            print("EventID: ", currentString)
         }
     }
     

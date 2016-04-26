@@ -14,9 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     var window: UIWindow?
     var myparser = MyHTTPGet()
+    var eventparser = EventParser()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        eventparser.deleteEvents()
         myparser.httpGet("Event")
+        myparser.httpGet("Checkpoint")
         return true
     }
     
