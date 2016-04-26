@@ -39,8 +39,11 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var saveBtn: UIButton!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         saveBtn.hidden = true
         nameField?.delegate = self
         organizerField?.delegate = self

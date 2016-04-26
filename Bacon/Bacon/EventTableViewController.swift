@@ -20,7 +20,8 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        events.removeAll()
+        print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
         //loadSampleEvents()
         
@@ -37,11 +38,14 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         let sortDescriptor = NSSortDescriptor(key: "eventName", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
+
+        
         fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
         fetchedResultsController!.delegate = self
         
         do {
             try fetchedResultsController?.performFetch()
+            
         } catch let error as NSError {
             print ("Could not fetch \(error), \(error.userInfo)")
         }
@@ -73,12 +77,15 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
 
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
         
-        let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
-        
-        events.append(object!)
+        if event.valueForKey("city") != nil {
         cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
+        
+            let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
+
+            events.append(object!)
+        }
         
         return cell
     }
@@ -115,7 +122,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try persistentStoreCoordinator!.executeRequest(deleteRequest, withContext: managedObjectContext!)
+            try persistentStoreCoordinator.executeRequest(deleteRequest, withContext: managedObjectContext!)
         } catch let error as NSError {
             debugPrint(error)
         }
@@ -151,6 +158,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     func saveEvents() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: EventObject.ArchiveURL.path!)
+        print("")
         if !isSuccessfulSave{
             print("Failed to save events...")
         }

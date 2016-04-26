@@ -54,16 +54,8 @@ class EventParser: NSObject, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         //print("elementName= \(elementName)")
         
-        if (elementName == "events") {
+        if (elementName == "event") {
             print("did end element event \(currentString)")
-            
-           /** let object = EventObject(name: thisEvent!.eventName!, description: thisEvent!.eventDescription!, city: thisEvent!.city!, type: thisEvent!.type!, numberOfCheckpoints: Int(thisEvent!.numberOfCheckpoints!), timer: Bool(thisEvent!.timer!), map: Bool(thisEvent!.map!),eventId: Int(thisEvent!.eventID!),eventOn: Bool(thisEvent!.eventOn!))
-            
-            print("Object created in eventparser: ", String(object))
-            
-            eventList.append(object!)
-            print("Getall test: ", object?.getAll())
-            */
             
         } else if(elementName == "eventName") {
             thisEvent?.eventName = currentString
@@ -122,14 +114,6 @@ class EventParser: NSObject, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         print ("Error parsing document \(parseError)")
     }
-    
-    /**
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        let DestViewController : EventTableViewController = segue.destinationViewController as! EventTableViewController
-        DestViewController.testi = String(eventList[0])
-        print("Segue list0: ", String(eventList[0]))
-        
-    }*/
     
     
 }
