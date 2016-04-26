@@ -13,6 +13,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     var events = [EventObject]()
     var myparser = MyHTTPGet()
+    var eventParser = EventParser()
     
     var fetchedResultsController: NSFetchedResultsController!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
@@ -24,13 +25,13 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
         //loadSampleEvents()
-        
+        myparser.httpGet()
         
             }
     
     override func viewWillAppear(animated: Bool) {
         //get students from the network
-        myparser.httpGet()
+        
         
         //set up fetched results controller for the tableview
         let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -42,13 +43,13 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
         fetchedResultsController!.delegate = self
-        
         do {
             try fetchedResultsController?.performFetch()
             
         } catch let error as NSError {
             print ("Could not fetch \(error), \(error.userInfo)")
         }
+        
     }
 
     
@@ -77,7 +78,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
 
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
         
-        if event.valueForKey("city") != nil {
+        if (event.valueForKey("eventID")?.integerValue) != events[0].eventId{
         cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
@@ -131,7 +132,8 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     
     @IBAction func deleteEventAction(sender: UIButton) {
-        deleteEvents()
+        //deleteEvents()
+        eventParser.deleteEvents()
     }
 
     

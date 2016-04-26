@@ -17,6 +17,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
     var appDelegate:AppDelegate?
     var managedContext:NSManagedObjectContext?
     var thisEvent:Event?
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator!
     
     //var eventList = [EventObject]()
     
@@ -45,7 +46,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
         print("found element: \(elementName)")
         
         //Create new event object when <event> -tag is found
-        if (elementName == "events") {
+        if (elementName == "event") {
             print ("did start element event \(currentString)")
             thisEvent = NSEntityDescription.insertNewObjectForEntityForName("Event", inManagedObjectContext: managedContext!) as? Event
                 }
@@ -54,18 +55,17 @@ class EventParser: NSObject, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         //print("elementName= \(elementName)")
         
-        if (elementName == "event") {
+        if (elementName == "events") {
             print("did end element event \(currentString)")
-            
+            if (thisEvent?.eventID == currentString){
+                print("sama ID")
+            }
         } else if(elementName == "eventName") {
             thisEvent?.eventName = currentString
-            print("EVENTTINIMI: ",String(currentString))
         } else if (elementName == "eventDescription") {
             thisEvent?.eventDescription = currentString
-            print(thisEvent?.eventDescription)
         } else if (elementName == "city") {
             thisEvent?.city = currentString
-            print(currentString)
         } else if (elementName == "eventID") {
             thisEvent?.eventID = NSNumber(integer: Int(currentString)!)
         } else if (elementName == "eventOn") {
@@ -94,7 +94,6 @@ class EventParser: NSObject, NSXMLParserDelegate {
             thisEvent?.type = currentString
             
         }
-            print("This event: ", String(thisEvent))
     }
     
     
@@ -113,6 +112,22 @@ class EventParser: NSObject, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         print ("Error parsing document \(parseError)")
+    }
+
+    
+    func deleteEvents() {
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDel.managedObjectContext
+        let coord = appDel.persistentStoreCoordinator
+        
+        let fetchRequest = NSFetchRequest(entityName: "Event")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try coord.executeRequest(deleteRequest, withContext: context)
+        } catch let error as NSError {
+            debugPrint(error)
+        }
     }
     
     
