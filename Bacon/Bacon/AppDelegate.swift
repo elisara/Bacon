@@ -13,10 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     var window: UIWindow?
-    
+    var myparser = MyHTTPGet()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+        myparser.httpGet("Event")
         return true
     }
     

@@ -25,7 +25,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
         //loadSampleEvents()
-        myparser.httpGet()
+        //myparser.httpGet()
         
             }
     
@@ -78,7 +78,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
 
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
         
-        if (event.valueForKey("eventID")?.integerValue) != events[0].eventId{
+        //if (event.valueForKey("eventID")?.integerValue) != events[0].eventId{
         cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
@@ -86,7 +86,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
 
             events.append(object!)
-        }
+        //}
         
         return cell
     }

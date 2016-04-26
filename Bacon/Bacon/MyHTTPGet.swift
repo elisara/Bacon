@@ -11,9 +11,9 @@ import Foundation
 class MyHTTPGet  {
 
     
-    func httpGet() {
+    func httpGet(extension: String) {
         
-        let urlString = "http://localhost:8080/iBaconBackend/webresources/Event"
+        let urlString = "http://localhost:8080/iBaconBackend/webresources/"
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfig);
         
