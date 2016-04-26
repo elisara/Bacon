@@ -37,7 +37,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         self.beaconManager.delegate = self
         // 4. We need to request this authorization for every beacon manager
         self.beaconManager.requestAlwaysAuthorization()
-        checkpointButton.enabled = false
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,10 +83,10 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
             print("Ennen if: ", places.first)
             if (places.first != nil){
                 print("ifissä: ", places.first)
-                checkpointButton.hidden = true
+                checkpointButton.hidden = false
             }
             else {
-                checkpointButton.hidden = false
+                checkpointButton.hidden = true
             }
         }
     }
