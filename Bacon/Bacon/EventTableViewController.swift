@@ -19,26 +19,28 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
     var managedObjectContext: NSManagedObjectContext?
     
+    @IBOutlet var eventTableView2: UITableView!
+    @IBOutlet var eventTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         events.removeAll()
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
-        //loadSampleEvents()
-        //myparser.httpGet()
-        
             }
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         //get students from the network
     
         //set up fetched results controller for the tableview
+    
         let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
         let fetchRequest    =  NSFetchRequest(entityName: "Event")
-        let sortDescriptor = NSSortDescriptor(key: "eventName", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "eventID", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
         fetchedResultsController!.delegate = self
@@ -48,7 +50,18 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         } catch let error as NSError {
             print ("Could not fetch \(error), \(error.userInfo)")
         }
+        /*let name = "lol"
+        fetchRequest.predicate = NSPredicate(format: "eventName == %@", name)*/
         
+    }
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        //setting this ViewController as the delegate for fetchedResults controller and
+        //providing the empty implementation would make the table view to update automatically
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!did change content")
+        //eventTableView.reloadData()
+        if valueForKey("city") != nil{
+        eventTableView2.reloadData()
+        }
     }
 
     
@@ -74,10 +87,10 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "EventTableViewCell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
-
+        
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
         
-        //if (event.valueForKey("eventID")?.integerValue) != events[0].eventId{
+        if event.valueForKey("city") != nil {
         cell.eventLabel.text = event.valueForKey("eventName") as? String
         cell.iconView.image = UIImage(named: "heart")!
         cell.eventImageView.image = UIImage(named: "blue2")!
@@ -85,41 +98,11 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
 
             events.append(object!)
-        //}
         
+        }
         return cell
     }
-    
-    func saveContext () {
-        if managedObjectContext!.hasChanges {
-            do {
-                try managedObjectContext!.save()
-            } catch {
-               
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
-            }
-        }
-    }
-    
-    func deleteEvents() {
-        let fetchRequest = NSFetchRequest(entityName: "Event")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try persistentStoreCoordinator.executeRequest(deleteRequest, withContext: managedObjectContext!)
-        } catch let error as NSError {
-            debugPrint(error)
-        }
-        saveContext()
-    }
-    
-    
-    @IBAction func deleteEventAction(sender: UIButton) {
-        //deleteEvents()
-        eventParser.deleteEvents()
-    }
+
 
     
     // MARK: Navigation

@@ -20,10 +20,12 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var eventName = ""
     var eventDescription = ""
     var type = ""
-    var city = "jouku"
+    var city = ""
     var numberOfCheckpoints = 0
     let pickerData = [["Drinking", "Sport", "Art", "Adventure", "Sightseeing"],
                       ["Tampere","Turku","Helsinki","Oulu","Jyväskylä"]]
+    
+    
     
     
     //Event
@@ -123,15 +125,24 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
     }
     
+    /**func updateEvents(){
+        let evenparser = EventParser()
+        let myget = MyHTTPGet()
+        evenparser.deleteEvents()
+        myget.httpGet("Event")
+        
+    }*/
+    
     
     @IBAction func saveEvent(sender: UIButton) {
         let asd = myHTTPPost()
-
-        
         allInfo = "<event><city>\(city)</city><eventDescription>\(eventDescription)</eventDescription><eventID>1</eventID><eventName>\(eventName)</eventName><eventOn>false</eventOn><imageURL>www.google.com</imageURL><map>\(map)</map><numberOfCheckpoints>\(numberOfCheckpoints)</numberOfCheckpoints><timer>\(timer)</timer><type>\(type)</type></event>"
         
         print(allInfo)
         asd.postData(allInfo, urlExtension: "Event")
+        //updateEvents()
+        
+        
         
     }
 

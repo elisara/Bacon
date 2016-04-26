@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         eventparser.deleteEvents()
         myparser.httpGet("Event")
         myparser.httpGet("Checkpoint")
+        myparser.httpGet("User")
         return true
     }
     

@@ -21,28 +21,39 @@ class EventViewController: UIViewController {
     
     var event = EventObject?()
     
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
         
-        if let event = event{
-            eventNameLabel.text! = event.name
-            iconView.image = UIImage(named: "heart")!
-            eventImageView.image = UIImage(named: "blue2")!
-            descriptionView.text! = event.eventDescription
-            
-            print(event.name)
-            print(event.eventDescription)
-
-        }
-        else{
-            print("Ei onnitunut")
-        }
-       
+        //if let event = event{
+        eventNameLabel.text! = event!.name
+        iconView.image = UIImage(named: "heart")!
+        eventImageView.image = UIImage(named: "blue2")!
+        descriptionView.text! = event!.eventDescription
+        
+        print(event!.name)
+        print(event!.eventDescription)
+        
+        /*}
+         else{
+         print("Ei onnitunut")
+         }
+         */
+        print("EventViewController: ", event?.eventId)
+        
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let DestViewController: MapViewController = segue.destinationViewController as! MapViewController
+        DestViewController.eventID = (event?.eventId)!
+    }
+    
     
     @IBAction func startButton(sender: UIButton) {
     }
     
 }
+
+

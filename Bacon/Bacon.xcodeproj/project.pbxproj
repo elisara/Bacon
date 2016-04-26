@@ -46,12 +46,6 @@
 		6A102CD71CBE436800623872 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CD41CBE436800623872 /* AddEventController.swift */; };
 		6A2F91F71CBCFEF800D24C7E /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */; };
 		6A6D8FDE1CB6795E00F68CD2 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */; };
-		6A874D861CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */; };
-		6A874D871CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */; };
-		6A874D881CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */; };
-		6A874D8A1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */; };
-		6A874D8B1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */; };
-		6A874D8C1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */; };
 		6A874DD01CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */; };
 		6A874DD11CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */; };
 		6A874DD21CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */; };
@@ -64,6 +58,47 @@
 		6A874DDF1CCA28300038EE30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DDD1CCA28300038EE30 /* RegisterController.swift */; };
 		6A874DE01CCF47820038EE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E269B1CA3E4360090FBE2 /* AppDelegate.swift */; };
 		6A874DE11CCF47830038EE30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E269B1CA3E4360090FBE2 /* AppDelegate.swift */; };
+		6A874DE21CCFAF600038EE30 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB21CC90C1D008DFE41 /* EventParser.swift */; };
+		6A874DE31CCFAF610038EE30 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB21CC90C1D008DFE41 /* EventParser.swift */; };
+		6A874DE41CCFAFFF0038EE30 /* MyHTTPGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9321CCA0A5A003B0D36 /* MyHTTPGet.swift */; };
+		6A874DE51CCFB0000038EE30 /* MyHTTPGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9321CCA0A5A003B0D36 /* MyHTTPGet.swift */; };
+		6A874DE61CCFC0210038EE30 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93A1CCA2502003B0D36 /* Event.swift */; };
+		6A874DE71CCFC0210038EE30 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93A1CCA2502003B0D36 /* Event.swift */; };
+		6A874DE81CCFC02D0038EE30 /* Score+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9371CCA2502003B0D36 /* Score+CoreDataProperties.swift */; };
+		6A874DE91CCFC02E0038EE30 /* Score+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9371CCA2502003B0D36 /* Score+CoreDataProperties.swift */; };
+		6A874DEA1CCFC0310038EE30 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9381CCA2502003B0D36 /* Score.swift */; };
+		6A874DEB1CCFC0320038EE30 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9381CCA2502003B0D36 /* Score.swift */; };
+		6A874DEC1CCFC0370038EE30 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9391CCA2502003B0D36 /* Event+CoreDataProperties.swift */; };
+		6A874DED1CCFC0370038EE30 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9391CCA2502003B0D36 /* Event+CoreDataProperties.swift */; };
+		6A874DEE1CCFC03D0038EE30 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93B1CCA2502003B0D36 /* User+CoreDataProperties.swift */; };
+		6A874DEF1CCFC03E0038EE30 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93B1CCA2502003B0D36 /* User+CoreDataProperties.swift */; };
+		6A874DF01CCFC0420038EE30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93C1CCA2502003B0D36 /* User.swift */; };
+		6A874DF11CCFC0430038EE30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93C1CCA2502003B0D36 /* User.swift */; };
+		6A874DF21CCFC0460038EE30 /* Checkpoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93D1CCA2502003B0D36 /* Checkpoint+CoreDataProperties.swift */; };
+		6A874DF31CCFC0460038EE30 /* Checkpoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93D1CCA2502003B0D36 /* Checkpoint+CoreDataProperties.swift */; };
+		6A874DF41CCFC04A0038EE30 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93E1CCA2502003B0D36 /* Checkpoint.swift */; };
+		6A874DF51CCFC04A0038EE30 /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928E93E1CCA2502003B0D36 /* Checkpoint.swift */; };
+		6A874DF61CCFC04E0038EE30 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9341CCA2434003B0D36 /* Model.xcdatamodeld */; };
+		6A874DF71CCFC04F0038EE30 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4928E9341CCA2434003B0D36 /* Model.xcdatamodeld */; };
+		6A874DF81CCFC0570038EE30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E269D1CA3E4360090FBE2 /* ViewController.swift */; };
+		6A874DF91CCFC0570038EE30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E269D1CA3E4360090FBE2 /* ViewController.swift */; };
+		6A874DFA1CCFC05F0038EE30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A0E26A21CA3E4360090FBE2 /* Assets.xcassets */; };
+		6A874DFB1CCFC0600038EE30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A0E26A21CA3E4360090FBE2 /* Assets.xcassets */; };
+		6A874DFC1CCFC06A0038EE30 /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */; };
+		6A874DFD1CCFC06B0038EE30 /* KaushanScript-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */; };
+		6A874DFE1CCFC0730038EE30 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */; };
+		6A874DFF1CCFC0750038EE30 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A102CC61CBD234C00623872 /* EventTableViewController.swift */; };
+		6A874E001CCFC0830038EE30 /* CheckpointParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB31CC90C1D008DFE41 /* CheckpointParser.swift */; };
+		6A874E011CCFC0830038EE30 /* CheckpointParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB31CC90C1D008DFE41 /* CheckpointParser.swift */; };
+		6A874E021CCFC0870038EE30 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB41CC90C1D008DFE41 /* UserParser.swift */; };
+		6A874E031CCFC0870038EE30 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB41CC90C1D008DFE41 /* UserParser.swift */; };
+		6A874E041CCFC08A0038EE30 /* ScoreParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB51CC90C1D008DFE41 /* ScoreParser.swift */; };
+		6A874E051CCFC08A0038EE30 /* ScoreParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49227BB51CC90C1D008DFE41 /* ScoreParser.swift */; };
+		6A874E061CCFC09D0038EE30 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DD71CC9FC290038EE30 /* MapViewController.swift */; };
+		6A874E071CCFC0A30038EE30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874DDD1CCA28300038EE30 /* RegisterController.swift */; };
+		6A874E091CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
+		6A874E0A1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
+		6A874E0B1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,12 +155,11 @@
 		6A102CD41CBE436800623872 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		6A2F91F61CBCFEF800D24C7E /* KaushanScript-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KaushanScript-Regular.otf"; path = "/Users/iosdev/Desktop/2.vuosi 4.jakso/Bacon/Bacon/Bacon/KaushanScript-Regular.otf/KaushanScript-Regular.otf"; sourceTree = "<absolute>"; };
 		6A6D8FDD1CB6795E00F68CD2 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
-		6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointTableViewCell.swift; sourceTree = "<group>"; };
-		6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointTableViewController.swift; sourceTree = "<group>"; };
 		6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckpointController.swift; sourceTree = "<group>"; };
 		6A874DD31CC8D7A00038EE30 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6A874DD71CC9FC290038EE30 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6A874DDD1CCA28300038EE30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,8 +233,6 @@
 				6A102CC61CBD234C00623872 /* EventTableViewController.swift */,
 				6A102CD01CBE25A300623872 /* EventViewController.swift */,
 				6A102CD41CBE436800623872 /* AddEventController.swift */,
-				6A874D851CC610700038EE30 /* CheckpointTableViewCell.swift */,
-				6A874D891CC6143F0038EE30 /* CheckpointTableViewController.swift */,
 				6A874DCF1CC8BC2F0038EE30 /* AddCheckpointController.swift */,
 				6A874DD31CC8D7A00038EE30 /* LoginController.swift */,
 				49227BB21CC90C1D008DFE41 /* EventParser.swift */,
@@ -212,6 +244,7 @@
 				6A874DD71CC9FC290038EE30 /* MapViewController.swift */,
 				4928E9321CCA0A5A003B0D36 /* MyHTTPGet.swift */,
 				6A874DDD1CCA28300038EE30 /* RegisterController.swift */,
+				6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */,
 			);
 			path = Bacon;
 			sourceTree = "<group>";
@@ -350,6 +383,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A874DFA1CCFC05F0038EE30 /* Assets.xcassets in Resources */,
+				6A874DFC1CCFC06A0038EE30 /* KaushanScript-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +392,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A874DFB1CCFC0600038EE30 /* Assets.xcassets in Resources */,
+				6A874DFD1CCFC06B0038EE30 /* KaushanScript-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,11 +426,10 @@
 				4928E9421CCA2502003B0D36 /* Event.swift in Sources */,
 				6A102CCB1CBD269300623872 /* EventObject.swift in Sources */,
 				6A874DD81CC9FC290038EE30 /* MapViewController.swift in Sources */,
-				6A874D8A1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
-				6A874D861CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
 				6A874DDE1CCA28300038EE30 /* RegisterController.swift in Sources */,
 				49227BBA1CC90C1D008DFE41 /* ScoreParser.swift in Sources */,
 				4928E9401CCA2502003B0D36 /* Score.swift in Sources */,
+				6A874E091CCFCF680038EE30 /* CheckpointViewController.swift in Sources */,
 				6A874DD01CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,19 +438,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A874DE41CCFAFFF0038EE30 /* MyHTTPGet.swift in Sources */,
 				6A102CD61CBE436800623872 /* AddEventController.swift in Sources */,
 				6A874DDF1CCA28300038EE30 /* RegisterController.swift in Sources */,
 				6A874DD11CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */,
-				6A874D871CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
 				6A874DE01CCF47820038EE30 /* AppDelegate.swift in Sources */,
 				6A102CD21CBE25A300623872 /* EventViewController.swift in Sources */,
 				6A102CCF1CBE1C4000623872 /* EventTableViewCell.swift in Sources */,
+				6A874DF81CCFC0570038EE30 /* ViewController.swift in Sources */,
+				6A874DE61CCFC0210038EE30 /* Event.swift in Sources */,
+				6A874DF21CCFC0460038EE30 /* Checkpoint+CoreDataProperties.swift in Sources */,
+				6A874E021CCFC0870038EE30 /* UserParser.swift in Sources */,
 				6A102CCC1CBD269300623872 /* EventObject.swift in Sources */,
+				6A874DF41CCFC04A0038EE30 /* Checkpoint.swift in Sources */,
+				6A874DF01CCFC0420038EE30 /* User.swift in Sources */,
+				6A874DEC1CCFC0370038EE30 /* Event+CoreDataProperties.swift in Sources */,
+				6A874E001CCFC0830038EE30 /* CheckpointParser.swift in Sources */,
 				4928E9301CC9134C003B0D36 /* myHTTPPost.swift in Sources */,
 				6A874DD91CC9FC290038EE30 /* MapViewController.swift in Sources */,
-				6A874D8B1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
+				6A874DEA1CCFC0310038EE30 /* Score.swift in Sources */,
 				6A102CCE1CBE189100623872 /* EventTableViewController.swift in Sources */,
+				6A874E0A1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */,
+				6A874E041CCFC08A0038EE30 /* ScoreParser.swift in Sources */,
 				6A0E26B11CA3E4360090FBE2 /* BaconTests.swift in Sources */,
+				6A874DEE1CCFC03D0038EE30 /* User+CoreDataProperties.swift in Sources */,
+				6A874DE21CCFAF600038EE30 /* EventParser.swift in Sources */,
+				6A874DF61CCFC04E0038EE30 /* Model.xcdatamodeld in Sources */,
+				6A874DE81CCFC02D0038EE30 /* Score+CoreDataProperties.swift in Sources */,
 				6A874DD51CC8D7A00038EE30 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,16 +473,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A874DFE1CCFC0730038EE30 /* EventTableViewCell.swift in Sources */,
+				6A874DE91CCFC02E0038EE30 /* Score+CoreDataProperties.swift in Sources */,
+				6A874DE51CCFB0000038EE30 /* MyHTTPGet.swift in Sources */,
+				6A874E031CCFC0870038EE30 /* UserParser.swift in Sources */,
 				6A102CCD1CBD269300623872 /* EventObject.swift in Sources */,
-				6A874D881CC610700038EE30 /* CheckpointTableViewCell.swift in Sources */,
+				6A874DF91CCFC0570038EE30 /* ViewController.swift in Sources */,
+				6A874DEB1CCFC0320038EE30 /* Score.swift in Sources */,
 				6A0E26BC1CA3E4360090FBE2 /* BaconUITests.swift in Sources */,
-				6A874D8C1CC6143F0038EE30 /* CheckpointTableViewController.swift in Sources */,
+				6A874DED1CCFC0370038EE30 /* Event+CoreDataProperties.swift in Sources */,
+				6A874E071CCFC0A30038EE30 /* RegisterController.swift in Sources */,
+				6A874DFF1CCFC0750038EE30 /* EventTableViewController.swift in Sources */,
 				6A874DD21CC8BC2F0038EE30 /* AddCheckpointController.swift in Sources */,
 				6A874DD61CC8D7A00038EE30 /* LoginController.swift in Sources */,
+				6A874E011CCFC0830038EE30 /* CheckpointParser.swift in Sources */,
 				4928E9311CC9134D003B0D36 /* myHTTPPost.swift in Sources */,
 				6A102CD71CBE436800623872 /* AddEventController.swift in Sources */,
 				6A874DE11CCF47830038EE30 /* AppDelegate.swift in Sources */,
+				6A874DEF1CCFC03E0038EE30 /* User+CoreDataProperties.swift in Sources */,
+				6A874DF11CCFC0430038EE30 /* User.swift in Sources */,
+				6A874DF51CCFC04A0038EE30 /* Checkpoint.swift in Sources */,
+				6A874E0B1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */,
+				6A874DE31CCFAF610038EE30 /* EventParser.swift in Sources */,
+				6A874DF71CCFC04F0038EE30 /* Model.xcdatamodeld in Sources */,
+				6A874DF31CCFC0460038EE30 /* Checkpoint+CoreDataProperties.swift in Sources */,
+				6A874E051CCFC08A0038EE30 /* ScoreParser.swift in Sources */,
 				6A102CD31CBE25A300623872 /* EventViewController.swift in Sources */,
+				6A874DE71CCFC0210038EE30 /* Event.swift in Sources */,
+				6A874E061CCFC09D0038EE30 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

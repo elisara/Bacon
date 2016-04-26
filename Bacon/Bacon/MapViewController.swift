@@ -15,13 +15,15 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var checkpointButton: UIButton!
     
+    var eventID = Int()
+    
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 1.0, regionRadius * 1.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    // DBB26A86-A7FD-45F7-AEEA-3A1BFAC8D6D9
+    //1
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(
         proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
@@ -37,6 +39,9 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         self.beaconManager.delegate = self
         // 4. We need to request this authorization for every beacon manager
         self.beaconManager.requestAlwaysAuthorization()
+        
+        print(eventID)
+        
         
     }
     
@@ -80,7 +85,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         if let nearestBeacon = beacons.first {
             let places = placesNearBeacon(nearestBeacon)
             // TODO: update the UI here
-            print("Ennen if: ", places.first)
+            print("Ennen if: ", nearestBeacon.major)
             if (places.first != nil){
                 print("ifissä: ", places.first)
                 checkpointButton.hidden = false
@@ -100,4 +105,11 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let DestViewController: CheckpointViewController = segue.destinationViewController as! CheckpointViewController
+        DestViewController.eventID = eventID
+    }
+    
 }
+

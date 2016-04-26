@@ -6,6 +6,7 @@ class myHTTPPost {
     
     var addEvent = AddEventController()
     var eventparser = EventParser()
+    var myget = MyHTTPGet()
     var urlString = "http://localhost:8080/iBaconBackend/webresources/"
 
     
@@ -28,10 +29,11 @@ class myHTTPPost {
         let sessionTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             print("posting done, response = \(response), error = \(error)")
             
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            //let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         
-            self.eventparser.deleteEvents()
+            //self.eventparser.deleteEvents()
             self.eventparser.parse(data!)
+            //self.myget.httpGet("Event")
             print(self.eventparser.currentString)
             
             })

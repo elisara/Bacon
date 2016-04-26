@@ -12,7 +12,7 @@ class MyHTTPGet  {
 
     
     func httpGet(urlExtension: String) {
-        
+        print("GET")
         let urlString = "http://localhost:8080/iBaconBackend/webresources/"
         let finalURL = urlString + urlExtension
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()

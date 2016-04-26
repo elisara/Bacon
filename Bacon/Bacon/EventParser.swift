@@ -31,7 +31,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         //print ("found characters: \(string)")
-        currentString = string
+        currentString = currentString + string
     }
     
     func parserDidStartDocument(parser: NSXMLParser) {
@@ -95,6 +95,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
             thisEvent?.eventID = NSNumber(integer: Int(currentString)!)
             print("EventID: ", currentString)
         }
+        currentString = ""
     }
     
     
@@ -117,6 +118,7 @@ class EventParser: NSObject, NSXMLParserDelegate {
 
     
     func deleteEvents() {
+        print("DELETE")
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDel.managedObjectContext
         let coord = appDel.persistentStoreCoordinator

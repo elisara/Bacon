@@ -27,11 +27,9 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     var gpsLocation = ""
     var eventId = 1
     
-    
     var event = EventObject?()
     
-    
-    var beacons = ["57832:7199", "911:912"]
+    let beacons = ["57832:7199", "911:912"]
     
     var fetchedResultsController: NSFetchedResultsController!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
@@ -61,18 +59,19 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         hint2Field?.delegate = self
         GPSLocationField?.delegate = self
         
-        checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
-        beaconLabel.text = beacons[0]
+        beaconLabel.text = beacons[i]
         
         
-        
-        if currentCheckpoint == checkpoints{
-            nextBtn.hidden = true
-            saveBtn.hidden = false
-        }
         if let event = event{
             eventIdLabel.text = String(event.eventId)
             self.eventId = event.eventId
+            self.checkpoints = event.numberOfCheckpoints
+            
+            if currentCheckpoint == checkpoints{
+                nextBtn.hidden = true
+                saveBtn.hidden = false
+            }
+            checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
             
             print("Eventid addcheckpointctrl", eventId)
             
@@ -81,34 +80,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
             print("Ei onnitunut")
         }
         
-
-    
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        //get students from the network
-        //set up fetched results controller for the tableview
-        let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
-        let fetchRequest    =  NSFetchRequest(entityName: "Event")
-        let sortDescriptor = NSSortDescriptor(key: "eventID", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest:  fetchRequest, managedObjectContext: appDelegate.managedObjectContext, sectionNameKeyPath: nil , cacheName: nil)
-        fetchedResultsController!.delegate = self
-        do {
-            try fetchedResultsController?.performFetch()
-            
-            
-        } catch let error as NSError {
-            print ("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-        print("Managed.. : ")
-
-    }
-    
-    
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         nameField.resignFirstResponder()
@@ -147,7 +119,6 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     
     
     @IBAction func saveCheckpoint(sender: UIButton) {
-        //<?xml version=\"1.0\"encoding=\"UTF-8\"?>\n
         
         let myPost = myHTTPPost()
         
@@ -157,22 +128,29 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
        
         print(allInfo)
         
+        if currentCheckpoint < checkpoints{
         currentCheckpoint+=1
+        }
         checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
-        //i+=1
+        
+        if i <= beacons.count{
+        i+=1
+        }
+        beaconLabel.text = beacons[i]
+        
         nameField.text = ""
         descriptionField.text = ""
         organizerField.text = ""
         hint1Field.text = ""
         hint2Field.text = ""
         allInfo = ""
+        GPSLocationField.text = ""
         
         if currentCheckpoint == checkpoints{
             nextBtn.hidden = true
             saveBtn.hidden = false
         }
         
-     
         
     }
 }
