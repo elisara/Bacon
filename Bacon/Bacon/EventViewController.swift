@@ -42,6 +42,16 @@ class EventViewController: UIViewController {
          */
         print("EventViewController: ", event?.eventId)
         
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        let nextController = self.navigationController!.viewControllers[3] as! EventTableViewController
+        self.navigationController?.popToViewController(nextController, animated: true)
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

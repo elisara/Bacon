@@ -23,8 +23,22 @@ class MyHTTPGet  {
             //Define the operation we'd like to run in the operation queue
             let studentParseOperation = NSBlockOperation(block: {
                 print("block op runs")
-                let parser = EventParser()
-                parser.parse(data!)
+                switch urlExtension {
+                case "Event":
+                    let parser = EventParser()
+                    parser.parse(data!)
+                case "Checkpoint":
+                    let parser = CheckpointParser()
+                    parser.parse(data!)
+                case "User":
+                    let parser = UserParser()
+                    parser.parse(data!)
+                case "Score":
+                    let parser = ScoreParser()
+                    parser.parse(data!)
+                default:
+                    break
+                }
                 //self.showTF.text = resultString
             })
             // create a queue and add the operation

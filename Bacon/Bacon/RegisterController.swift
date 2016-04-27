@@ -39,6 +39,15 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         registerBtn.enabled = false
         
         
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        let nextController = self.navigationController!.viewControllers[1] as! LoginController
+        self.navigationController?.popToViewController(nextController, animated: true)
+        
         
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {

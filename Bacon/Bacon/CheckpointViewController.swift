@@ -15,7 +15,7 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     @IBOutlet weak var checkpointImageView: UIImageView!
     @IBOutlet weak var checkpointNameLabel: UILabel!
     @IBOutlet weak var checkpointOrganizerLabel: UILabel!
-    @IBOutlet weak var checkpointDescriptionField: UILabel!
+    @IBOutlet weak var descriptionView: UITextView!
     
     var eventID = Int()
     var managedObjectContext = NSManagedObjectContext()
@@ -23,6 +23,16 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        let nextController = self.navigationController!.viewControllers[5] as! MapViewController
+        self.navigationController?.popToViewController(nextController, animated: true)
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {

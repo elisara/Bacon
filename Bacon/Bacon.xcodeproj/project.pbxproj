@@ -99,6 +99,9 @@
 		6A874E091CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
 		6A874E0A1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
 		6A874E0B1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */; };
+		6A874E0D1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E0C1CD09B570038EE30 /* BrowseOrManageController.swift */; };
+		6A874E0E1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E0C1CD09B570038EE30 /* BrowseOrManageController.swift */; };
+		6A874E0F1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A874E0C1CD09B570038EE30 /* BrowseOrManageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,7 @@
 		6A874DD71CC9FC290038EE30 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6A874DDD1CCA28300038EE30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckpointViewController.swift; sourceTree = "<group>"; };
+		6A874E0C1CD09B570038EE30 /* BrowseOrManageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseOrManageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,7 @@
 				4928E9321CCA0A5A003B0D36 /* MyHTTPGet.swift */,
 				6A874DDD1CCA28300038EE30 /* RegisterController.swift */,
 				6A874E081CCFCF680038EE30 /* CheckpointViewController.swift */,
+				6A874E0C1CD09B570038EE30 /* BrowseOrManageController.swift */,
 			);
 			path = Bacon;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				6A874DD41CC8D7A00038EE30 /* LoginController.swift in Sources */,
 				6A6D8FDE1CB6795E00F68CD2 /* EventTableViewCell.swift in Sources */,
 				4928E9451CCA2502003B0D36 /* Checkpoint+CoreDataProperties.swift in Sources */,
+				6A874E0D1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */,
 				4928E9361CCA2434003B0D36 /* Model.xcdatamodeld in Sources */,
 				49227BB91CC90C1D008DFE41 /* UserParser.swift in Sources */,
 				6A102CD51CBE436800623872 /* AddEventController.swift in Sources */,
@@ -458,6 +464,7 @@
 				6A874DD91CC9FC290038EE30 /* MapViewController.swift in Sources */,
 				6A874DEA1CCFC0310038EE30 /* Score.swift in Sources */,
 				6A102CCE1CBE189100623872 /* EventTableViewController.swift in Sources */,
+				6A874E0E1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */,
 				6A874E0A1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */,
 				6A874E041CCFC08A0038EE30 /* ScoreParser.swift in Sources */,
 				6A0E26B11CA3E4360090FBE2 /* BaconTests.swift in Sources */,
@@ -493,6 +500,7 @@
 				6A874DEF1CCFC03E0038EE30 /* User+CoreDataProperties.swift in Sources */,
 				6A874DF11CCFC0430038EE30 /* User.swift in Sources */,
 				6A874DF51CCFC04A0038EE30 /* Checkpoint.swift in Sources */,
+				6A874E0F1CD09B570038EE30 /* BrowseOrManageController.swift in Sources */,
 				6A874E0B1CCFCF680038EE30 /* CheckpointViewController.swift in Sources */,
 				6A874DE31CCFAF610038EE30 /* EventParser.swift in Sources */,
 				6A874DF71CCFC04F0038EE30 /* Model.xcdatamodeld in Sources */,

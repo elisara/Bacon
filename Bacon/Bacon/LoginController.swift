@@ -22,6 +22,10 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var asAdminBtn: UIButton!
     
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext?
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,45 +34,52 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         usernameField?.delegate = self
         passwordField?.delegate = self
         
+         moc = appDelegate.managedObjectContext
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
     }
-    /*
+    
+    func back(sender: UIBarButtonItem) {
+        let nextController = self.navigationController!.viewControllers[0]
+        self.navigationController?.popToViewController(nextController, animated: true)
+        
+        
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let managedObjectContext = NSManagedObjectContext()
-        let moc = managedObjectContext
+        
         let userFetch = NSFetchRequest(entityName: "User")
         
         do {
-            let fetchedUsers = try moc.executeFetchRequest(userFetch) as? [User]
+            let fetchedUsers = try moc!.executeFetchRequest(userFetch) as? [User]
+            for User in fetchedUsers! {
+                
+                print("EntityUserData", User.userName)
+                
+            }
         } catch {
             fatalError("Failed to fetch users: \(error)")
         }
-    }*/
+    }
     
     func textFieldDidEndEditing(textField: UITextField) {
         username = usernameField.text!
         password = passwordField.text!
         
         if username == "admin" && password == "admin"{
-        asAdminBtn.hidden = false
+            asAdminBtn.hidden = false
         }
-    
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         usernameField.resignFirstResponder()
         passwordField.resignFirstResponder()
         return true
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-   
-    
-    }
-    
+}
 
 
+}

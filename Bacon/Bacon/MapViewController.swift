@@ -15,7 +15,13 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var checkpointButton: UIButton!
     
+    @IBOutlet weak var hint1View: UITextView!
+    @IBOutlet weak var hint2View: UITextView!
+    @IBOutlet weak var extraHintBtn: UIButton!
+    
+    
     var eventID = Int()
+    var extraSeen = false
     
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -32,6 +38,9 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hint1View.hidden = true
+        hint2View.hidden = true
+        extraHintBtn.hidden = true
         // set initial location to Metropolia
         let initialLocation = CLLocation(latitude: 60.221803, longitude: 24.804408)
         centerMapOnLocation(initialLocation)
@@ -41,6 +50,15 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         self.beaconManager.requestAlwaysAuthorization()
         
         print(eventID)
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        let nextController = self.navigationController!.viewControllers[4] as! EventViewController
+        self.navigationController?.popToViewController(nextController, animated: true)
         
         
     }
@@ -54,6 +72,38 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         super.viewDidDisappear(animated)
         self.beaconManager.stopRangingBeaconsInRegion(self.beaconRegion)
     }
+    
+    
+    @IBAction func hintAction(sender: UIButton) {
+        if hint1View.hidden == true && extraSeen == false{
+        hint1View.hidden = false
+        extraHintBtn.hidden = false
+        }
+        else if hint1View.hidden == false && extraSeen == false{
+            hint1View.hidden = true
+            extraHintBtn.hidden = true
+        }
+        else if hint1View.hidden == true && extraSeen == true{
+            hint1View.hidden = false
+            hint2View.hidden = false
+            extraHintBtn.hidden = false
+        }
+        else if hint1View.hidden == false && extraSeen == true{
+            hint1View.hidden = true
+            hint2View.hidden = true
+            extraHintBtn.hidden = true
+        }
+        
+    }
+    
+    
+    
+    @IBAction func extraHintAction(sender: UIButton) {
+        extraSeen = true
+        hint2View.hidden = false
+        extraHintBtn.enabled = true
+    }
+    
     
     let placesByBeacons = [
         "57832:7199": [

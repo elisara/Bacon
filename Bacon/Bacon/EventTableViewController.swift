@@ -34,7 +34,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             }
     
     func back(sender: UIBarButtonItem) {
-            let nextController = self.navigationController!.viewControllers[2]
+            let nextController = self.navigationController!.viewControllers[2] as! BrowseOrManageController
             self.navigationController?.popToViewController(nextController, animated: true)
         
         
