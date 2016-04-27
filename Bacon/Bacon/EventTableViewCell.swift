@@ -14,4 +14,6 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventLabel: UILabel!
+    
+    
 }

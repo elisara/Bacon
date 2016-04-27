@@ -19,7 +19,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     @IBOutlet weak var hint2View: UITextView!
     @IBOutlet weak var extraHintBtn: UIButton!
     
-    
+    var beaconMajorMinor = String()
     var eventID = Int()
     var extraSeen = false
     
@@ -139,6 +139,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
             if (places.first != nil){
                 print("ifissä: ", places.first)
                 checkpointButton.hidden = false
+                beaconMajorMinor = "\(nearestBeacon.major):\(nearestBeacon.minor)"
             }
             else {
                 checkpointButton.hidden = true

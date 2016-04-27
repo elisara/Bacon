@@ -22,6 +22,8 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     @IBOutlet var eventTableView2: UITableView!
     @IBOutlet var eventTableView: UITableView!
+   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,6 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     func back(sender: UIBarButtonItem) {
             let nextController = self.navigationController!.viewControllers[2] as! BrowseOrManageController
             self.navigationController?.popToViewController(nextController, animated: true)
-        
         
     }
     

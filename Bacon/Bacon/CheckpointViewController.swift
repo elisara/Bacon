@@ -20,12 +20,16 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var eventID = Int()
+    var nearestBeacon = String()
     var moc: NSManagedObjectContext?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moc = appDelegate.managedObjectContext
+        
+        //print(eventID)
+        print("CheckpointViewController MAJOR:MIONR ",nearestBeacon)
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
@@ -45,9 +49,14 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
         print(eventID)
         //let fetchRequest = NSFetchRequest()
         
-        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", eventID)
+        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d && beacon == %@", eventID, nearestBeacon)
+        
         do {
             let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
+            
+            checkpointNameLabel.text = fetchedCheckpoints[0].name
+            checkpointOrganizerLabel.text = fetchedCheckpoints[0].organizer
+            checkpointDescriptionView.text = fetchedCheckpoints[0].checkpointDescription
             
             for Checkpoint in fetchedCheckpoints {
                 print("CheckpointEntityData", Checkpoint.checkpointDescription)
@@ -60,5 +69,3 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
         }
     }
 }
-
-

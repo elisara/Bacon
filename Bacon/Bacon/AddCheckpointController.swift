@@ -35,6 +35,9 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
     var managedObjectContext: NSManagedObjectContext?
     
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext?
+    
     
     @IBOutlet weak var checkpointNumberLabel: UILabel!
     @IBOutlet weak var beaconLabel: UILabel!
@@ -47,10 +50,11 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var GPSLocationField: UITextField!
     @IBOutlet weak var eventIdLabel: UILabel!
+    @IBOutlet weak var noMoreLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        moc = appDelegate.managedObjectContext
         saveBtn.hidden = true
         nameField?.delegate = self
         organizerField?.delegate = self
@@ -58,8 +62,9 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         hint1Field?.delegate = self
         hint2Field?.delegate = self
         GPSLocationField?.delegate = self
-        
+        noMoreLabel.hidden = true
         beaconLabel.text = beacons[i]
+        
         
         
         if let event = event{
@@ -72,14 +77,12 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
                 saveBtn.hidden = false
             }
             checkpointNumberLabel.text = "Checkpoint \(String(currentCheckpoint))/\(String(checkpoints))"
-            
-            print("Eventid addcheckpointctrl", eventId)
-            
+        
         }
         else{
             print("Ei onnitunut")
         }
-        
+        fetchCheckpoints()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -116,8 +119,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
         super.touchesBegan(touches, withEvent: event)
     }
     
-    
-    
+ 
     @IBAction func saveCheckpoint(sender: UIButton) {
         
         let myPost = myHTTPPost()
@@ -150,6 +152,40 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
             nextBtn.hidden = true
             saveBtn.hidden = false
         }
+        
+        
+    }
+    
+     func fetchCheckpoints() {
+        
+        let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
+        print("fetchissä ", eventId)
+
+        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", eventId)
+        do {
+            let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
+            for Checkpoint in fetchedCheckpoints {
+                print("CheckpointEntityData", Checkpoint.name)
+            }
+            if fetchedCheckpoints.count != 0{
+                noMoreLabel.hidden = false
+            }
+
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
+    }
+    
+    
+    @IBAction func saveLastCheckpointAction(sender: UIButton) {
+        let myPost = myHTTPPost()
+        
+        allInfo = "<checkpoint><beacon>\(beacons[i])</beacon><checkpointDescription>\(checkpointDescription)</checkpointDescription><eventID>\(eventId)</eventID><hint>\(hint1)</hint><hint2>\(hint2)</hint2><imageURL>www.google.com</imageURL><name>\(checkpointName)</name><organizer>\(organizer)</organizer></checkpoint>"
+        
+        myPost.postData(allInfo, urlExtension: "Checkpoint")
+        
+        print(allInfo)
         
         
     }
