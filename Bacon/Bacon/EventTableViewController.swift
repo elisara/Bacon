@@ -27,7 +27,18 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         events.removeAll()
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
             }
+    
+    func back(sender: UIBarButtonItem) {
+            let nextController = self.navigationController!.viewControllers[2]
+            self.navigationController?.popToViewController(nextController, animated: true)
+        
+        
+    }
     
     
     
