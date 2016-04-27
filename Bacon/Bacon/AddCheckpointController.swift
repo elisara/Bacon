@@ -29,7 +29,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     
     var event = EventObject?()
     
-    let beacons = ["57832:7199", "911:912"]
+    let beacons = ["1319:50423"]
     
     var fetchedResultsController: NSFetchedResultsController!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!

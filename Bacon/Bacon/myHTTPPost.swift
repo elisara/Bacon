@@ -7,7 +7,7 @@ class myHTTPPost {
     var addEvent = AddEventController()
     var eventparser = EventParser()
     var myget = MyHTTPGet()
-    var urlString = "http://localhost:8080/iBaconBackend/webresources/"
+    var urlString = "http://172.20.10.2:8080/iBaconBackend/webresources/"
 
     
     func postData(data: String, urlExtension: String) {

@@ -22,6 +22,8 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     var beaconMajorMinor = String()
     var eventID = Int()
     var extraSeen = false
+    var visitedBeacons : [String] = []
+    var numberOfCheckpoints = Int()
     
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -32,7 +34,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     //1
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(
-        proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!,
+        proximityUUID: NSUUID(UUIDString: "DBB26A86-A7FD-45F7-AEEA-3A1BFAC8D6D9")!,
         identifier: "ranged region")
     
     
@@ -41,6 +43,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         hint1View.hidden = true
         hint2View.hidden = true
         extraHintBtn.hidden = true
+        checkpointButton.hidden = true
         // set initial location to Metropolia
         let initialLocation = CLLocation(latitude: 60.221803, longitude: 24.804408)
         centerMapOnLocation(initialLocation)
@@ -140,6 +143,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
                 print("ifissä: ", places.first)
                 checkpointButton.hidden = false
                 beaconMajorMinor = "\(nearestBeacon.major):\(nearestBeacon.minor)"
+                print(beaconMajorMinor)
             }
             else {
                 checkpointButton.hidden = true
@@ -160,6 +164,9 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
         
         let DestViewController: CheckpointViewController = segue.destinationViewController as! CheckpointViewController
         DestViewController.eventID = eventID
+        DestViewController.nearestBeacon = beaconMajorMinor
+        DestViewController.visitedBeacons = visitedBeacons
+        DestViewController.numberOfCheckpoints = numberOfCheckpoints
     }
     
 }

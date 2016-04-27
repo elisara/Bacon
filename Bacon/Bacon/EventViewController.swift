@@ -58,6 +58,7 @@ class EventViewController: UIViewController {
         
         let DestViewController: MapViewController = segue.destinationViewController as! MapViewController
         DestViewController.eventID = (event?.eventId)!
+        DestViewController.numberOfCheckpoints = (event?.numberOfCheckpoints)!
     }
     
     
