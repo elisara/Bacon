@@ -13,14 +13,24 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     var window: UIWindow?
-    var myparser = MyHTTPGet()
-    var eventparser = EventParser()
+    var opQueue: NSOperationQueue?
+    var myParser = MyHTTPGet()
+    var eventParser = EventParser()
+    var userParser = UserParser()
+    var checkpointParser = CheckpointParser()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        eventparser.deleteEvents()
-        myparser.httpGet("Event")
-        myparser.httpGet("Checkpoint")
-        myparser.httpGet("User")
+        opQueue = NSOperationQueue()
+        opQueue!.name = "Parser Queue"
+        opQueue!.maxConcurrentOperationCount = 1
+        
+        userParser.deleteUsers()
+        checkpointParser.deleteCheckpoints()
+        eventParser.deleteEvents()
+        
+        myParser.httpGet("Event")
+        myParser.httpGet("Checkpoint")
+        myParser.httpGet("User")
         return true
     }
     

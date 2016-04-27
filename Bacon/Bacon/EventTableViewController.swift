@@ -1,3 +1,4 @@
+
 //
 //  EventTableViewController.swift
 //  Bacon
@@ -103,7 +104,25 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         
         if event.valueForKey("city") != nil {
         cell.eventLabel.text = event.valueForKey("eventName") as? String
-        cell.iconView.image = UIImage(named: "heart")!
+            
+            if String(event.valueForKey("type")!) == "Sport"{
+        cell.iconView.image = UIImage(named: "trophy")!
+            }
+            else if String(event.valueForKey("type")!) == "Art"{
+                cell.iconView.image = UIImage(named: "paint")!
+            }
+            else if String(event.valueForKey("type")!) == "Sightseeing"{
+                cell.iconView.image = UIImage(named: "sight")!
+            }
+            else if String(event.valueForKey("type")!) == "Adventure"{
+                cell.iconView.image = UIImage(named: "treasure")!
+            }
+            else if String(event.valueForKey("type")!) == "Drinking"{
+                cell.iconView.image = UIImage(named: "drinking")!
+            }
+            else{
+                cell.iconView.image = UIImage(named: "heart")!
+            }
         cell.eventImageView.image = UIImage(named: "blue2")!
         
             let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)

@@ -15,14 +15,18 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     @IBOutlet weak var checkpointImageView: UIImageView!
     @IBOutlet weak var checkpointNameLabel: UILabel!
     @IBOutlet weak var checkpointOrganizerLabel: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
+    @IBOutlet weak var checkpointDescriptionView: UITextView!
+    
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var eventID = Int()
-    var managedObjectContext = NSManagedObjectContext()
+    var moc: NSManagedObjectContext?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moc = appDelegate.managedObjectContext
+        
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
         self.navigationItem.leftBarButtonItem = newBackButton;
@@ -36,11 +40,21 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     }
     
     override func viewDidAppear(animated: Bool) {
-        let moc = managedObjectContext
-        let employeesFetch = NSFetchRequest(entityName: "Checkpoint")
         
+        let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
+        print(eventID)
+        //let fetchRequest = NSFetchRequest()
+        
+        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", eventID)
         do {
-            let fetchedEmployees = try moc.executeFetchRequest(employeesFetch) as! [Checkpoint]
+            let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
+            
+            for Checkpoint in fetchedCheckpoints {
+                print("CheckpointEntityData", Checkpoint.checkpointDescription)
+            }
+            
+            //print(checkpointsFetch)
+            //print(fetchedCheckpoints[0].beacon)
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }

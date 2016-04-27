@@ -24,7 +24,7 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
-
+    
     
     
     override func viewDidLoad() {
@@ -33,8 +33,9 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         asAdminBtn.hidden = true
         usernameField?.delegate = self
         passwordField?.delegate = self
+        moc = appDelegate.managedObjectContext
+        loginBtn.enabled = false
         
-         moc = appDelegate.managedObjectContext
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
@@ -47,22 +48,11 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         
         
     }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         
-        let userFetch = NSFetchRequest(entityName: "User")
-        
-        do {
-            let fetchedUsers = try moc!.executeFetchRequest(userFetch) as? [User]
-            for User in fetchedUsers! {
-                
-                print("EntityUserData", User.userName)
-                
-            }
-        } catch {
-            fatalError("Failed to fetch users: \(error)")
-        }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -72,6 +62,7 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         if username == "admin" && password == "admin"{
             asAdminBtn.hidden = false
         }
+        authentificate()
         
     }
     
@@ -79,7 +70,34 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         usernameField.resignFirstResponder()
         passwordField.resignFirstResponder()
         return true
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func authentificate() {
+        
+        let userFetch = NSFetchRequest(entityName: "User")
+        
+        do {
+            let fetchedUsers = try moc!.executeFetchRequest(userFetch) as? [User]
+            
+            for User in fetchedUsers! {
+                
+                print("EntityUserData", User.userName)
+                
+                if User.userName==username && User.password==password{
+                    loginBtn.enabled = true
+                    
+                }
+            }
+
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
+        }
+    }
+    
 }
 
-
-}

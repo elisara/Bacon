@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import Security
+import CoreData
 
-class RegisterController: UIViewController, UITextFieldDelegate {
+
+class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResultsControllerDelegate {
     
     var allInfo = ""
     var username = ""
@@ -18,12 +20,22 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     var password2 = ""
     var email = ""
     
+    var usernameList: [String]  = []
+    
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext?
+    
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var password2Field: UITextField!
     @IBOutlet weak var registerBtn: UIButton!
+    
+    @IBOutlet weak var failUsernameBtn: UIButton!
+    @IBOutlet weak var failUsernameView: UITextView!
+    @IBOutlet weak var failPasswordView: UITextView!
+    @IBOutlet weak var failPasswordBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -37,7 +49,14 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         password2Field.delegate = self
         
         registerBtn.enabled = false
+        failUsernameBtn.hidden = true
+        failUsernameView.hidden = true
+        failPasswordBtn.hidden = true
+        failPasswordView.hidden = true
         
+        moc = appDelegate.managedObjectContext
+        
+        fetchUsers()
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
@@ -59,6 +78,24 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func fetchUsers(){
+       
+        
+        let userFetch = NSFetchRequest(entityName: "User")
+        
+        do {
+            let fetchedUsers = try moc!.executeFetchRequest(userFetch) as? [User]
+            for User in fetchedUsers! {
+                
+                print("EntityUserData", User.userName)
+                usernameList.append(User.userName!)
+            }
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
+        }
+        
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         username = usernameField.text!
         print("Username: ", username)
@@ -67,15 +104,42 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         password = passwordField.text!
         password2 = password2Field.text!
         
-        if password == password2 && password != ""{
-            registerBtn.enabled = true
-   
+        testRegisteration()
+        
+    
+    }
+    
+    func testRegisteration(){
+        
+        if usernameList.contains(username){
+            failUsernameView.hidden = false
+            failUsernameBtn.hidden = false
         }
         
+        if password == password2 && password != "" && !usernameList.contains(username) && username != "" && email != ""{
+            registerBtn.enabled = true
             
-        
+        }
+        if password != password2 && password2 != ""{
+            failPasswordView.hidden = false
+            failPasswordBtn.hidden = false
+            
+        }
         
     }
+    
+    
+    @IBAction func usernameOkAction(sender: UIButton) {
+        failUsernameBtn.hidden = true
+        failUsernameView.hidden = true
+    }
+    
+    
+    @IBAction func passwordOkAction(sender: UIButton) {
+        failPasswordBtn.hidden = true
+        failPasswordView.hidden = true
+    }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
