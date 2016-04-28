@@ -16,6 +16,9 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     @IBOutlet weak var checkpointNameLabel: UILabel!
     @IBOutlet weak var checkpointOrganizerLabel: UILabel!
     @IBOutlet weak var checkpointDescriptionView: UITextView!
+    @IBOutlet weak var congratulationsLabel: UILabel!
+    @IBOutlet weak var continueBtn: UIButton!
+    @IBOutlet weak var finishBtn: UIButton!
     
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -29,7 +32,8 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         moc = appDelegate.managedObjectContext
-        
+        congratulationsLabel.hidden = true
+        finishBtn.hidden = true
         //print(eventID)
         print("CheckpointViewController MAJOR:MIONR ",nearestBeacon)
         
@@ -41,7 +45,9 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
             visitedBeacons.append(nearestBeacon)
         }
         if visitedBeacons.count == numberOfCheckpoints+1{
-            checkpointNameLabel.text = "Congratulations!"
+            congratulationsLabel.hidden = false
+            continueBtn.hidden = true
+            finishBtn.hidden = false
         }else{
             let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
             print(eventID)

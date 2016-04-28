@@ -163,6 +163,11 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            let DestViewController: BrowseOrManageController = segue.destinationViewController as! BrowseOrManageController
+            DestViewController.username = username
+        
+    }
     
     
 }

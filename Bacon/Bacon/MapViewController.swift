@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import MapKit
+import CoreData
 
-class MapViewController: UIViewController, ESTBeaconManagerDelegate {
+class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var checkpointButton: UIButton!
@@ -19,11 +20,16 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     @IBOutlet weak var hint2View: UITextView!
     @IBOutlet weak var extraHintBtn: UIButton!
     
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     var beaconMajorMinor = String()
     var eventID = Int()
     var extraSeen = false
     var visitedBeacons : [String] = []
     var numberOfCheckpoints = Int()
+    var moc: NSManagedObjectContext?
+    var i = 0
+    var nextCheckpoint = String()
     
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -40,10 +46,13 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moc = appDelegate.managedObjectContext
         hint1View.hidden = true
         hint2View.hidden = true
         extraHintBtn.hidden = true
         checkpointButton.hidden = true
+        getHints()
+        
         // set initial location to Metropolia
         let initialLocation = CLLocation(latitude: 60.221803, longitude: 24.804408)
         centerMapOnLocation(initialLocation)
@@ -159,6 +168,33 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate {
             print(places) // TODO: remove after implementing the UI
         }
     }
+    
+    /**
+    func getHints(){
+        let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
+        print(eventID)
+        //let fetchRequest = NSFetchRequest()
+        
+        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", eventID)
+        
+        do {
+            let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
+            nextCheckpoint = fetchedCheckpoints[i].beacon!
+            hint1View.text = fetchedCheckpoints[i].hint
+            hint2View.text = fetchedCheckpoints[i].hint2
+            
+            for Checkpoint in fetchedCheckpoints {
+                print("CheckpointEntityData", Checkpoint.checkpointDescription)
+            }
+            
+            //print(checkpointsFetch)
+            //print(fetchedCheckpoints[0].beacon)
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
+    }
+ */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

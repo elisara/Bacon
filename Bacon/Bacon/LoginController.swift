@@ -99,5 +99,12 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "login"{
+        let DestViewController: BrowseOrManageController = segue.destinationViewController as! BrowseOrManageController
+        DestViewController.username = username
+            }
+    }
+    
 }
 

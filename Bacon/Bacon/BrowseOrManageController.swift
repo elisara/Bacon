@@ -12,8 +12,17 @@ import UIKit
 class BrowseOrManageController: UIViewController {
     
     
+    
+    @IBOutlet weak var manageBtn: UIButton!
+    var username = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        manageBtn.hidden = true
+        if username == "admin"{
+            
+            manageBtn.hidden = false
+        }
         
         
         self.navigationItem.hidesBackButton = true
