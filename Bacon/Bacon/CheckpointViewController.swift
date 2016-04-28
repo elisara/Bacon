@@ -27,6 +27,7 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     var moc: NSManagedObjectContext?
     var visitedBeacons : [String] = []
     var numberOfCheckpoints = Int()
+    var i = Int()
     
     
     override func viewDidLoad() {
@@ -88,9 +89,13 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if segue.identifier == "continue"{
         let DestViewController: MapViewController = segue.destinationViewController as! MapViewController
         DestViewController.eventID = eventID
         DestViewController.beaconMajorMinor = nearestBeacon
         DestViewController.visitedBeacons = visitedBeacons
+        DestViewController.i = i
+        }
+        
     }
 }

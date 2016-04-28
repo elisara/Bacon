@@ -20,7 +20,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var asAdminBtn: UIButton!
     
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
@@ -30,7 +29,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        asAdminBtn.hidden = true
         usernameField?.delegate = self
         passwordField?.delegate = self
         moc = appDelegate.managedObjectContext
@@ -59,9 +57,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         username = usernameField.text!
         password = passwordField.text!
         
-        if username == "admin" && password == "admin"{
-            asAdminBtn.hidden = false
-        }
         authentificate()
         
     }

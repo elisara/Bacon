@@ -147,12 +147,18 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
         if let nearestBeacon = beacons.first {
             let places = placesNearBeacon(nearestBeacon)
             // TODO: update the UI here
+            var nearest = String(nearestBeacon.major)
             print("Ennen if: ", nearestBeacon.major)
-            if (places.first != nil){
+            
+            //testaa, täsmääkö vihjeet ja lähin beacon
+            if (places.first != nil && nextCheckpoint.containsString(nearest)){
                 print("ifissä: ", places.first)
                 checkpointButton.hidden = false
                 beaconMajorMinor = "\(nearestBeacon.major):\(nearestBeacon.minor)"
                 print(beaconMajorMinor)
+                i += 1
+                print("i after finding beacon")
+                
             }
             else {
                 checkpointButton.hidden = true
@@ -169,7 +175,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
         }
     }
     
-    /**
+    
     func getHints(){
         let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
         print(eventID)
@@ -194,7 +200,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
         }
         
     }
- */
+ 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -203,6 +209,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
         DestViewController.nearestBeacon = beaconMajorMinor
         DestViewController.visitedBeacons = visitedBeacons
         DestViewController.numberOfCheckpoints = numberOfCheckpoints
+        DestViewController.i = i
     }
     
 }

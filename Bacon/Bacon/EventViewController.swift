@@ -28,7 +28,26 @@ class EventViewController: UIViewController {
         
         //if let event = event{
         eventNameLabel.text! = event!.name
-        iconView.image = UIImage(named: "heart")!
+    
+        if event!.type == "Sport"{
+            iconView.image = UIImage(named: "trophy")!
+        }
+        else if event!.type == "Art"{
+            iconView.image = UIImage(named: "paint")!
+        }
+        else if event!.type == "Sightseeing"{
+            iconView.image = UIImage(named: "sight")!
+        }
+        else if event!.type == "Adventure"{
+            iconView.image = UIImage(named: "treasure")!
+        }
+        else if event!.type == "Drinking"{
+            iconView.image = UIImage(named: "drinking")!
+        }
+        else{
+            iconView.image = UIImage(named: "heart")!
+        }
+        
         eventImageView.image = UIImage(named: "blue2")!
         descriptionView.text! = event!.eventDescription
         
