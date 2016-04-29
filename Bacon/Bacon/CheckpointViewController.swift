@@ -32,6 +32,7 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidload checkpointctrl")
         moc = appDelegate.managedObjectContext
         congratulationsLabel.hidden = true
         finishBtn.hidden = true
@@ -45,11 +46,12 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
         if !visitedBeacons.contains(nearestBeacon){
             visitedBeacons.append(nearestBeacon)
         }
-        if visitedBeacons.count == numberOfCheckpoints+1{
+        if visitedBeacons.count == numberOfCheckpoints{
+            print("congratulations point")
             congratulationsLabel.hidden = false
             continueBtn.hidden = true
             finishBtn.hidden = false
-        }else{
+        }
             let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
             print(eventID)
             //let fetchRequest = NSFetchRequest()
@@ -58,7 +60,7 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
             
             do {
                 let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
-                
+                print("fetchissä")
                 checkpointNameLabel.text = fetchedCheckpoints[0].name
                 checkpointOrganizerLabel.text = fetchedCheckpoints[0].organizer
                 checkpointDescriptionView.text = fetchedCheckpoints[0].checkpointDescription
@@ -72,11 +74,12 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
             } catch {
                 fatalError("Failed to fetch employees: \(error)")
             }
-        }
+        
         
     }
     
     func back(sender: UIBarButtonItem) {
+        print("backissä")
         let nextController = self.navigationController!.viewControllers[5] as! MapViewController
         self.navigationController?.popToViewController(nextController, animated: true)
         

@@ -8,25 +8,30 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class EventViewController: UIViewController {
+class EventViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     
     
+    @IBOutlet weak var blockLabel: UILabel!
+    @IBOutlet weak var startBtn: UIButton!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
+    var moc: NSManagedObjectContext?
+    let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
     var event = EventObject?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moc = appDelegate.managedObjectContext
         
-        // Handle the text field’s user input through delegate callbacks.
-        
-        //if let event = event{
+        testIfCheckpoints()
+  
         eventNameLabel.text! = event!.name
     
         if event!.type == "Sport"{
@@ -54,11 +59,7 @@ class EventViewController: UIViewController {
         print(event!.name)
         print(event!.eventDescription)
         
-        /*}
-         else{
-         print("Ei onnitunut")
-         }
-         */
+       
         print("EventViewController: ", event?.eventId)
         
         self.navigationItem.hidesBackButton = true
@@ -78,6 +79,31 @@ class EventViewController: UIViewController {
         let DestViewController: MapViewController = segue.destinationViewController as! MapViewController
         DestViewController.eventID = (event?.eventId)!
         DestViewController.numberOfCheckpoints = (event?.numberOfCheckpoints)!
+    }
+    
+    func testIfCheckpoints(){
+        let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
+       
+        //let fetchRequest = NSFetchRequest()
+        
+        checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", (event?.eventId)!)
+        
+        do {
+            let fetchedCheckpoints = try moc!.executeFetchRequest(checkpointsFetch) as! [Checkpoint]
+            
+            if fetchedCheckpoints.count == 0{
+                startBtn.enabled = false
+                blockLabel.hidden = false
+            }
+            else{
+                startBtn.enabled = true
+                blockLabel.hidden = true
+            }
+        
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
     }
     
     

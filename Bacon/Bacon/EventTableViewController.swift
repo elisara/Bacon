@@ -13,8 +13,9 @@ import CoreData
 class EventTableViewController: UITableViewController, NSFetchedResultsControllerDelegate{
     
     var events = [EventObject]()
-    var myparser = MyHTTPGet()
+    var myParser = MyHTTPGet()
     var eventParser = EventParser()
+    var checkpointParser = CheckpointParser()
     
     var fetchedResultsController: NSFetchedResultsController!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
@@ -27,6 +28,9 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkpointParser.deleteCheckpoints()
+        myParser.httpGet("Checkpoint")
         events.removeAll()
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
@@ -103,7 +107,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
         
-        if event.valueForKey("city") != nil {
+       // if event.valueForKey("city") != nil {
         cell.eventLabel.text = event.valueForKey("eventName") as? String
             
             if String(event.valueForKey("type")!) == "Sport"{
@@ -130,7 +134,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
 
             events.append(object!)
         
-        }
+        //}
         return cell
     }
 

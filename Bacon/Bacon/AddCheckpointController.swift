@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 
+
 class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextViewDelegate, NSFetchedResultsControllerDelegate {
     
     var allInfo = ""
@@ -29,7 +30,7 @@ class AddCheckpointController: UIViewController, UITextFieldDelegate, UITextView
     
     var event = EventObject?()
     
-    let beacons = ["1319:50423"]
+    let beacons = ["1319:50423", "1234:1234"]
     
     var fetchedResultsController: NSFetchedResultsController!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
