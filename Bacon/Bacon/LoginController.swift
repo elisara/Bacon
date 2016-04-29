@@ -20,6 +20,8 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var warningLabel: UITextView!
+    
     
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
@@ -33,6 +35,7 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         passwordField?.delegate = self
         moc = appDelegate.managedObjectContext
         loginBtn.enabled = false
+        warningLabel.hidden = true
         
         
         self.navigationItem.hidesBackButton = true
@@ -51,6 +54,9 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         super.viewDidAppear(animated)
         
         
+    }
+    func textFieldDidBeginEditing(textField: UITextField) {
+        warningLabel.hidden = true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -85,8 +91,14 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
                 
                 if User.userName==username && User.password==password{
                     loginBtn.enabled = true
+                    warningLabel.hidden = true
                     
                 }
+                else if User.userName != username{
+                    warningLabel.hidden = false
+                    
+                }
+                
             }
 
         } catch {

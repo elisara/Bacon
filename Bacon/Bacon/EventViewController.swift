@@ -53,7 +53,7 @@ class EventViewController: UIViewController, NSFetchedResultsControllerDelegate 
             iconView.image = UIImage(named: "heart")!
         }
         
-        eventImageView.image = UIImage(named: "blue2")!
+        eventImageView.image = UIImage(named: "blue3")!
         descriptionView.text! = event!.eventDescription
         
         print(event!.name)

@@ -32,10 +32,8 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
     @IBOutlet weak var password2Field: UITextField!
     @IBOutlet weak var registerBtn: UIButton!
     
-    @IBOutlet weak var failUsernameBtn: UIButton!
     @IBOutlet weak var failUsernameView: UITextView!
     @IBOutlet weak var failPasswordView: UITextView!
-    @IBOutlet weak var failPasswordBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -49,9 +47,7 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         password2Field.delegate = self
         
         registerBtn.enabled = false
-        failUsernameBtn.hidden = true
         failUsernameView.hidden = true
-        failPasswordBtn.hidden = true
         failPasswordView.hidden = true
         
         moc = appDelegate.managedObjectContext
@@ -68,6 +64,11 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         self.navigationController?.popToViewController(nextController, animated: true)
         
         
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        failPasswordView.hidden = true
+        failUsernameView.hidden = true
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         usernameField.resignFirstResponder()
@@ -113,8 +114,7 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         
         if usernameList.contains(username){
             failUsernameView.hidden = false
-            failUsernameBtn.hidden = false
-        }
+                    }
         
         if password == password2 && password != "" && !usernameList.contains(username) && username != "" && email != ""{
             registerBtn.enabled = true
@@ -122,23 +122,13 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         }
         if password != password2 && password2 != ""{
             failPasswordView.hidden = false
-            failPasswordBtn.hidden = false
+           
             
         }
         
     }
     
-    
-    @IBAction func usernameOkAction(sender: UIButton) {
-        failUsernameBtn.hidden = true
-        failUsernameView.hidden = true
-    }
-    
-    
-    @IBAction func passwordOkAction(sender: UIButton) {
-        failPasswordBtn.hidden = true
-        failPasswordView.hidden = true
-    }
+
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
