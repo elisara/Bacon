@@ -29,7 +29,7 @@ class MyHTTPGet  {
                     print("Event block op runs")
                     let parser = EventParser()
                     parser.parse(data!)
-                    //self.showTF.text = resultString
+        
                 })
                 // create a queue and add the operation
                 var queue: NSOperationQueue?
@@ -42,7 +42,7 @@ class MyHTTPGet  {
                     print("Checkpoint block op runs")
                     let parser = CheckpointParser()
                     parser.parse(data!)
-                    //self.showTF.text = resultString
+                    
                 })
                 // create a queue and add the operation
                 var queue: NSOperationQueue?
@@ -55,7 +55,6 @@ class MyHTTPGet  {
                     print("User block op runs")
                     let parser = UserParser()
                     parser.parse(data!)
-                    //self.showTF.text = resultString
                 })
                 // create a queue and add the operation
                 var queue: NSOperationQueue?

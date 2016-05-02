@@ -35,6 +35,8 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         print("Eventslist: ", events)
         print("view did load eventtableviewctrl")
         
+        
+        //backbutton
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action:"back:")
         self.navigationItem.leftBarButtonItem = newBackButton;
@@ -49,9 +51,6 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
     
     override func viewWillAppear(animated: Bool) {
-        //get students from the network
-    
-        //set up fetched results controller for the tableview
     
         let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
         let fetchRequest    =  NSFetchRequest(entityName: "Event")
@@ -67,15 +66,10 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         } catch let error as NSError {
             print ("Could not fetch \(error), \(error.userInfo)")
         }
-        /*let name = "lol"
-        fetchRequest.predicate = NSPredicate(format: "eventName == %@", name)*/
         
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        //setting this ViewController as the delegate for fetchedResults controller and
-        //providing the empty implementation would make the table view to update automatically
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!did change content")
-        //eventTableView.reloadData()
+        print("did change content")
         if valueForKey("city") != nil{
         eventTableView2.reloadData()
         }
@@ -106,8 +100,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! EventTableViewCell
         
         let event = fetchedResultsController!.objectAtIndexPath(indexPath)
-        
-       // if event.valueForKey("city") != nil {
+     
         cell.eventLabel.text = event.valueForKey("eventName") as? String
             
             if String(event.valueForKey("type")!) == "Sport"{
@@ -134,15 +127,13 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
 
             events.append(object!)
         
-        //}
+        
         return cell
     }
-
-
     
-    // MARK: Navigation
     
-    // In storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "selectEvent" {
@@ -168,20 +159,5 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-
-    // MARK: NSCoding
-    /**
-    func saveEvents() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: EventObject.ArchiveURL.path!)
-        print("")
-        if !isSuccessfulSave{
-            print("Failed to save events...")
-        }
-    }
     
-    func loadEvents() -> [EventObject]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(EventObject.ArchiveURL.path!) as? [EventObject]
-    }
- */
-
 }

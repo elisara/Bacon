@@ -20,7 +20,7 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var warningLabel: UITextView!
+   
     
     
     let appDelegate     = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -30,12 +30,10 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         usernameField?.delegate = self
         passwordField?.delegate = self
         moc = appDelegate.managedObjectContext
         loginBtn.enabled = false
-        warningLabel.hidden = true
         
         
         self.navigationItem.hidesBackButton = true
@@ -55,9 +53,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         
         
     }
-    func textFieldDidBeginEditing(textField: UITextField) {
-        warningLabel.hidden = true
-    }
     
     func textFieldDidEndEditing(textField: UITextField) {
         username = usernameField.text!
@@ -76,7 +71,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func authentificate() {
@@ -93,7 +87,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
                 
                 if (User.userName==username && User.password==password){
                     loginBtn.enabled = true
-                    warningLabel.hidden = true
                     username = User.userName!
                     password = User.password!
                     correct = true
@@ -102,7 +95,6 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
                 
             }
             if correct == false {
-                //warningLabel.hidden = false
                 print("username in test: ", username)
                 print("password in test: ", username)
                 let alertController = UIAlertController(title: "iBacon", message:

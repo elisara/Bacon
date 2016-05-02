@@ -26,7 +26,7 @@ class UserParser: NSObject,NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         //print ("found characters: \(string)")
-        currentString = string
+        currentString = currentString + string
     }
     
     func parserDidStartDocument(parser: NSXMLParser) {
@@ -36,8 +36,6 @@ class UserParser: NSObject,NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        //print("found element: \(elementName)")
-        
         //Create new event object when <event> -tag is found
         if (elementName == "user") {
             print ("did start element user \(currentString)")
@@ -46,8 +44,7 @@ class UserParser: NSObject,NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        //print("elementName= \(elementName)")
-        
+
         if (elementName == "user") {
             print("did end element user \(currentString)")
         } else if(elementName == "email") {
@@ -57,6 +54,7 @@ class UserParser: NSObject,NSXMLParserDelegate {
         } else if(elementName == "userName") {
             thisUser?.userName = currentString
         }
+        currentString = ""
     }
     
     func parserDidEndDocument(parser: NSXMLParser) {
@@ -73,7 +71,6 @@ class UserParser: NSObject,NSXMLParserDelegate {
         print ("Error parsing document \(parseError)")
     }
     func deleteUsers() {
-        //print("DELETE")
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDel.managedObjectContext
         let coord = appDel.persistentStoreCoordinator

@@ -25,8 +25,7 @@ class ScoreParser: NSObject,NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        //print ("found characters: \(string)")
-        currentString = string
+        currentString = currentString + string
     }
     
     func parserDidStartDocument(parser: NSXMLParser) {
@@ -36,7 +35,6 @@ class ScoreParser: NSObject,NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        //print("found element: \(elementName)")
         
         //Create new event object when <event> -tag is found
         if (elementName == "score") {
@@ -46,8 +44,7 @@ class ScoreParser: NSObject,NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        //print("elementName= \(elementName)")
-        
+
         if (elementName == "score") {
             print("did end element score \(currentString)")
         } else if(elementName == "eventName") {
@@ -57,6 +54,7 @@ class ScoreParser: NSObject,NSXMLParserDelegate {
         } else if(elementName == "userName") {
             thisScore?.userName = currentString
         }
+        currentString = ""
     }
     
     func parserDidEndDocument(parser: NSXMLParser) {

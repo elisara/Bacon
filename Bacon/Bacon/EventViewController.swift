@@ -83,9 +83,6 @@ class EventViewController: UIViewController, NSFetchedResultsControllerDelegate 
     
     func testIfCheckpoints(){
         let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
-       
-        //let fetchRequest = NSFetchRequest()
-        
         checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", (event?.eventId)!)
         
         do {

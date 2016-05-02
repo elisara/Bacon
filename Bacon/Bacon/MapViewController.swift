@@ -46,6 +46,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("1INDEX: ", i)
         moc = appDelegate.managedObjectContext
         hint1View.hidden = true
         hint2View.hidden = true
@@ -125,9 +126,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
             "Mint Beacon": 350,
         ],
         "1319:50423": [
-            "Huutista!": 50, // read as: it's 50 meters from
-            // "Heavenly Sandwiches" to the beacon with
-            // major 6574 and minor 54631
+            "Huutista!": 50,
             "Green & Green Salads": 150,
             "Mini Panini": 325
         ]
@@ -156,7 +155,6 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
                 checkpointButton.hidden = false
                 beaconMajorMinor = "\(nearestBeacon.major):\(nearestBeacon.minor)"
                 print(beaconMajorMinor)
-                i += 1
                 print("i after finding beacon")
                 
             }
@@ -180,7 +178,7 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
         let checkpointsFetch = NSFetchRequest(entityName: "Checkpoint")
         print(eventID)
         //let fetchRequest = NSFetchRequest()
-        
+        print("2INDEX: ", i)
         checkpointsFetch.predicate = NSPredicate(format: "eventID == %d", eventID)
         
         do {
@@ -192,23 +190,20 @@ class MapViewController: UIViewController, ESTBeaconManagerDelegate, NSFetchedRe
             for Checkpoint in fetchedCheckpoints {
                 print("CheckpointEntityData", Checkpoint.checkpointDescription)
             }
-            
-            //print(checkpointsFetch)
-            //print(fetchedCheckpoints[0].beacon)
+
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
         
     }
- 
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         let DestViewController: CheckpointViewController = segue.destinationViewController as! CheckpointViewController
         DestViewController.eventID = eventID
         DestViewController.nearestBeacon = beaconMajorMinor
         DestViewController.visitedBeacons = visitedBeacons
         DestViewController.numberOfCheckpoints = numberOfCheckpoints
+        i += 1
         DestViewController.i = i
     }
     

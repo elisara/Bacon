@@ -46,6 +46,8 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
         if !visitedBeacons.contains(nearestBeacon){
             visitedBeacons.append(nearestBeacon)
         }
+        print("Visited beacons: ",visitedBeacons.count)
+        print("NumberOfCheckpoints: ",numberOfCheckpoints)
         if visitedBeacons.count == numberOfCheckpoints{
             print("congratulations point")
             congratulationsLabel.hidden = false
@@ -97,7 +99,9 @@ class CheckpointViewController: UIViewController, NSFetchedResultsControllerDele
         DestViewController.eventID = eventID
         DestViewController.beaconMajorMinor = nearestBeacon
         DestViewController.visitedBeacons = visitedBeacons
+        DestViewController.numberOfCheckpoints = numberOfCheckpoints
         DestViewController.i = i
+        print("3INDEX continuessa CPVTRL: ", i)
         }
         
     }

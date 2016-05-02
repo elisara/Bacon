@@ -32,23 +32,14 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
     @IBOutlet weak var password2Field: UITextField!
     @IBOutlet weak var registerBtn: UIButton!
     
-    @IBOutlet weak var failUsernameView: UITextView!
-    @IBOutlet weak var failPasswordView: UITextView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //adminBtn.hidden = true
-        
         usernameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
         password2Field.delegate = self
-        
         registerBtn.enabled = false
-        failUsernameView.hidden = true
-        failPasswordView.hidden = true
         
         moc = appDelegate.managedObjectContext
         
@@ -63,13 +54,8 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         let nextController = self.navigationController!.viewControllers[1] as! LoginController
         self.navigationController?.popToViewController(nextController, animated: true)
         
-        
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        failPasswordView.hidden = true
-        failUsernameView.hidden = true
-    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         usernameField.resignFirstResponder()
         emailField.resignFirstResponder()
@@ -80,8 +66,6 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
     }
     
     func fetchUsers(){
-       
-        
         let userFetch = NSFetchRequest(entityName: "User")
         
         do {
@@ -113,7 +97,6 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
     func testRegisteration(){
         
         if usernameList.contains(username){
-            //failUsernameView.hidden = false
             let alertController = UIAlertController(title: "iBacon", message:
                 "Username is already in use", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
@@ -126,7 +109,6 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
             
         }
         if password != password2 && password2 != ""{
-            //failPasswordView.hidden = false
             let alertController = UIAlertController(title: "iBacon", message:
                 "Confirming password failed", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
@@ -138,26 +120,18 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
         
     }
     
-
-    
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
     
     @IBAction func registerAction(sender: UIButton) {
-        
         let myPost = myHTTPPost()
-        
         allInfo = "<user><email>\(email)</email><password>\(password)</password><userName>\(username)</userName></user> "
-        
         print("Allinfo in register: ", allInfo)
         myPost.postData(allInfo, urlExtension: "User")
         
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -31,10 +31,7 @@ class myHTTPPost {
             
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             print("Datastring: ",dataString)
-                        
-            //self.eventparser.deleteEvents()
             self.eventparser.parse(data!)
-            //self.myget.httpGet("Event")
             print(self.eventparser.currentString)
             
             })

@@ -19,10 +19,6 @@ class EventParser: NSObject, NSXMLParserDelegate {
     var thisEvent:Event?
     var persistentStoreCoordinator: NSPersistentStoreCoordinator!
     
-    //var eventList = [EventObject]()
-    
-    
-    
     func parse (xmlData:NSData) {
         let myParser = NSXMLParser(data: xmlData)
         myParser.delegate = self

@@ -13,7 +13,6 @@ import UIKit
 
 class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
     
-    //var asd = myHTTPPost()
     var allInfo = ""
     var map = true
     var timer = true
@@ -25,15 +24,12 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     let pickerData = [["Drinking", "Sport", "Art", "Adventure", "Sightseeing"],
                       ["Tampere","Turku","Helsinki","Oulu","Jyväskylä"]]
     
-    
-    
-    
+
     //Event
     @IBOutlet weak var eventNameField: UITextField!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var pickTypeAndCity: UIPickerView!
     @IBOutlet weak var checkpointStepper: UIStepper!
-    //@IBOutlet weak var eventDescriptionField: UITextField!
     @IBOutlet weak var eventDescriptionField: UITextView!
     
     
@@ -125,13 +121,6 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
     }
     
-    /**func updateEvents(){
-        let evenparser = EventParser()
-        let myget = MyHTTPGet()
-        evenparser.deleteEvents()
-        myget.httpGet("Event")
-        
-    }*/
     
     
     @IBAction func saveEvent(sender: UIButton) {
@@ -140,10 +129,6 @@ class AddEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         print(allInfo)
         asd.postData(allInfo, urlExtension: "Event")
-        //updateEvents()
-        
-        
-        
     }
 
 }
