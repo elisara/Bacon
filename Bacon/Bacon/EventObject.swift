@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class EventObject: NSObject, NSCoding{
+class EventObject: NSObject /*NSCoding*/{
     
     // MARK: Properties
     
@@ -26,8 +26,8 @@ class EventObject: NSObject, NSCoding{
     
     
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
+   // static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    //static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
     
     
     init!(name: String!, description : String!, city: String, type: String, numberOfCheckpoints: Int, timer: Bool, map: Bool, eventId: Int, eventOn : Bool){
@@ -48,7 +48,7 @@ class EventObject: NSObject, NSCoding{
     }
     
     // MARK: Types
-    
+    /**
     struct PropertyKey {
         static let nameKey = "name"
         static let descriptionKey = "eventDescription"
@@ -98,6 +98,6 @@ class EventObject: NSObject, NSCoding{
     
     func getEventName() -> String{
         return name
-    }
+    }*/
     
 }

@@ -128,7 +128,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
             else{
                 cell.iconView.image = UIImage(named: "heart")!
             }
-        cell.eventImageView.image = UIImage(named: "blue2")!
+            cell.eventImageView.image = UIImage(named: "blucell")!
         
             let object = EventObject(name: String(event.valueForKey("eventName")!), description: String(event.valueForKey("eventDescription")!), city: String(event.valueForKey("city")!), type: String(event.valueForKey("type")!), numberOfCheckpoints: (event.valueForKey("numberOfCheckpoints")?.integerValue)!, timer: (event.valueForKey("timer")?.boolValue)!, map: (event.valueForKey("map")?.boolValue)!,eventId: (event.valueForKey("eventID")?.integerValue)!,eventOn: (event.valueForKey("eventOn")?.boolValue)!)
 
@@ -170,7 +170,7 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     
 
     // MARK: NSCoding
-    
+    /**
     func saveEvents() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: EventObject.ArchiveURL.path!)
         print("")
@@ -182,5 +182,6 @@ class EventTableViewController: UITableViewController, NSFetchedResultsControlle
     func loadEvents() -> [EventObject]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(EventObject.ArchiveURL.path!) as? [EventObject]
     }
+ */
 
 }

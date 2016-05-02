@@ -63,8 +63,9 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
         username = usernameField.text!
         password = passwordField.text!
         
+        if (username != "" && password != ""){
         authentificate()
-        
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -81,6 +82,7 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
     func authentificate() {
         
         let userFetch = NSFetchRequest(entityName: "User")
+        var correct = false
         
         do {
             let fetchedUsers = try moc!.executeFetchRequest(userFetch) as? [User]
@@ -89,16 +91,25 @@ class LoginController: UIViewController, UITextFieldDelegate, NSFetchedResultsCo
                 
                 print("EntityUserData", User.userName)
                 
-                if User.userName==username && User.password==password{
+                if (User.userName==username && User.password==password){
                     loginBtn.enabled = true
                     warningLabel.hidden = true
-                    
-                }
-                else if User.userName != username{
-                    warningLabel.hidden = false
-                    
+                    username = User.userName!
+                    password = User.password!
+                    correct = true
+                
                 }
                 
+            }
+            if correct == false {
+                //warningLabel.hidden = false
+                print("username in test: ", username)
+                print("password in test: ", username)
+                let alertController = UIAlertController(title: "iBacon", message:
+                    "Wrong username or password", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
 
         } catch {

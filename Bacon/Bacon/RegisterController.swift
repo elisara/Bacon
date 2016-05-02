@@ -113,7 +113,12 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
     func testRegisteration(){
         
         if usernameList.contains(username){
-            failUsernameView.hidden = false
+            //failUsernameView.hidden = false
+            let alertController = UIAlertController(title: "iBacon", message:
+                "Username is already in use", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
                     }
         
         if password == password2 && password != "" && !usernameList.contains(username) && username != "" && email != ""{
@@ -121,7 +126,12 @@ class RegisterController: UIViewController, UITextFieldDelegate, NSFetchedResult
             
         }
         if password != password2 && password2 != ""{
-            failPasswordView.hidden = false
+            //failPasswordView.hidden = false
+            let alertController = UIAlertController(title: "iBacon", message:
+                "Confirming password failed", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
            
             
         }

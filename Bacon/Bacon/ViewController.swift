@@ -11,9 +11,9 @@ import CoreData
 
 // 1. Add the ESTBeaconManagerDelegate protocol
 class ViewController: UIViewController  {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var holderLabel: UILabel!
-    @IBOutlet weak var descriptionField: UITextView!
+    //@IBOutlet weak var nameLabel: UILabel!
+    //@IBOutlet weak var holderLabel: UILabel!
+    //@IBOutlet weak var descriptionField: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
