@@ -1,4 +1,4 @@
 # Bacon
 <br>
-Treasure Hunt iOs app using iBeacons.
+Treasure hunt iOs app using iBeacons.
 
