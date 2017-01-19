@@ -1,6 +1,6 @@
 # iBacon
 ```
-Treasure hunt iOs app using iBeacons.
+Treasure hunt iOs app using Bluetooth LE and iBeacons.
 ```
 
 ## Features
